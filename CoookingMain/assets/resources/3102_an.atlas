@@ -1,0 +1,174 @@
+
+3102_an.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+angry
+  rotate: false
+  xy: 143, 27
+  size: 16, 17
+  orig: 16, 17
+  offset: 0, 0
+  index: -1
+arm_l
+  rotate: true
+  xy: 108, 2
+  size: 20, 31
+  orig: 20, 31
+  offset: 0, 0
+  index: -1
+arm_r
+  rotate: true
+  xy: 388, 109
+  size: 17, 31
+  orig: 17, 31
+  offset: 0, 0
+  index: -1
+cloth
+  rotate: false
+  xy: 163, 52
+  size: 55, 74
+  orig: 55, 74
+  offset: 0, 0
+  index: -1
+eyebrow1
+  rotate: false
+  xy: 484, 118
+  size: 24, 8
+  orig: 24, 8
+  offset: 0, 0
+  index: -1
+eyebrow2
+  rotate: false
+  xy: 80, 5
+  size: 24, 8
+  orig: 24, 8
+  offset: 0, 0
+  index: -1
+eyes1
+  rotate: false
+  xy: 220, 81
+  size: 64, 23
+  orig: 64, 23
+  offset: 0, 0
+  index: -1
+eyes2
+  rotate: false
+  xy: 290, 106
+  size: 61, 20
+  orig: 61, 20
+  offset: 0, 0
+  index: -1
+eyes3
+  rotate: false
+  xy: 220, 59
+  size: 61, 20
+  orig: 61, 20
+  offset: 0, 0
+  index: -1
+eyes4
+  rotate: false
+  xy: 286, 84
+  size: 61, 20
+  orig: 61, 20
+  offset: 0, 0
+  index: -1
+glass
+  rotate: false
+  xy: 220, 106
+  size: 68, 20
+  orig: 68, 20
+  offset: 0, 0
+  index: -1
+hand_l1
+  rotate: false
+  xy: 258, 41
+  size: 13, 16
+  orig: 13, 16
+  offset: 0, 0
+  index: -1
+hand_l2
+  rotate: true
+  xy: 220, 41
+  size: 16, 17
+  orig: 16, 17
+  offset: 0, 0
+  index: -1
+hand_l3
+  rotate: false
+  xy: 141, 2
+  size: 13, 20
+  orig: 13, 20
+  offset: 0, 0
+  index: -1
+hand_r1
+  rotate: false
+  xy: 273, 41
+  size: 13, 16
+  orig: 13, 16
+  offset: 0, 0
+  index: -1
+hand_r2
+  rotate: true
+  xy: 239, 41
+  size: 16, 17
+  orig: 16, 17
+  offset: 0, 0
+  index: -1
+head
+  rotate: false
+  xy: 2, 15
+  size: 104, 111
+  orig: 104, 111
+  offset: 0, 0
+  index: -1
+leg
+  rotate: false
+  xy: 108, 46
+  size: 53, 80
+  orig: 53, 80
+  offset: 0, 0
+  index: -1
+mouth1
+  rotate: false
+  xy: 454, 113
+  size: 28, 13
+  orig: 28, 13
+  offset: 0, 0
+  index: -1
+mouth2
+  rotate: false
+  xy: 49, 3
+  size: 29, 10
+  orig: 29, 10
+  offset: 0, 0
+  index: -1
+mouth3
+  rotate: false
+  xy: 421, 114
+  size: 31, 12
+  orig: 31, 12
+  offset: 0, 0
+  index: -1
+pupils
+  rotate: false
+  xy: 2, 2
+  size: 45, 11
+  orig: 45, 11
+  offset: 0, 0
+  index: -1
+shoulder_l
+  rotate: true
+  xy: 108, 24
+  size: 20, 33
+  orig: 20, 33
+  offset: 0, 0
+  index: -1
+shoulder_r
+  rotate: true
+  xy: 353, 107
+  size: 19, 33
+  orig: 19, 33
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,48 @@
+{
+"skeleton": { "hash": "VHKHSohffUEhQwEjaD3zbfMBJO0", "spine": "3.6.53", "width": 70, "height": 104, "images": "./image/" },
+"bones": [
+	{ "name": "root" },
+	{ "name": "drink", "parent": "root", "y": 31 }
+],
+"slots": [
+	{ "name": "drinkanime", "bone": "drink", "attachment": "drinkanime_101" }
+],
+"skins": {
+	"default": {
+		"drinkanime": {
+			"drinkanime_101": { "width": 70, "height": 104 },
+			"drinkanime_102": { "width": 70, "height": 104 },
+			"drinkanime_103": { "width": 70, "height": 104 },
+			"drinkanime_201": { "width": 70, "height": 104 },
+			"drinkanime_202": { "width": 70, "height": 104 },
+			"drinkanime_203": { "width": 70, "height": 104 }
+		}
+	}
+},
+"animations": {
+	"1": {
+		"slots": {
+			"drinkanime": {
+				"attachment": [
+					{ "time": 0, "name": "drinkanime_101" },
+					{ "time": 0.1333, "name": "drinkanime_102" },
+					{ "time": 0.2667, "name": "drinkanime_103" },
+					{ "time": 0.3667, "name": null }
+				]
+			}
+		}
+	},
+	"2": {
+		"slots": {
+			"drinkanime": {
+				"attachment": [
+					{ "time": 0, "name": "drinkanime_201" },
+					{ "time": 0.1333, "name": "drinkanime_202" },
+					{ "time": 0.2667, "name": "drinkanime_203" },
+					{ "time": 0.3667, "name": null }
+				]
+			}
+		}
+	}
+}
+}

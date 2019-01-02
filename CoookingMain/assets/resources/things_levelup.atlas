@@ -1,0 +1,90 @@
+
+things_levelup.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+particle_levelup_1
+  rotate: false
+  xy: 2, 147
+  size: 158, 143
+  orig: 158, 143
+  offset: 0, 0
+  index: -1
+particle_levelup_10
+  rotate: false
+  xy: 482, 147
+  size: 158, 143
+  orig: 158, 143
+  offset: 0, 0
+  index: -1
+particle_levelup_11
+  rotate: false
+  xy: 642, 292
+  size: 158, 143
+  orig: 158, 143
+  offset: 0, 0
+  index: -1
+particle_levelup_12
+  rotate: false
+  xy: 2, 292
+  size: 158, 143
+  orig: 158, 143
+  offset: 0, 0
+  index: -1
+particle_levelup_2
+  rotate: false
+  xy: 162, 292
+  size: 158, 143
+  orig: 158, 143
+  offset: 0, 0
+  index: -1
+particle_levelup_3
+  rotate: false
+  xy: 2, 2
+  size: 158, 143
+  orig: 158, 143
+  offset: 0, 0
+  index: -1
+particle_levelup_4
+  rotate: false
+  xy: 162, 147
+  size: 158, 143
+  orig: 158, 143
+  offset: 0, 0
+  index: -1
+particle_levelup_5
+  rotate: false
+  xy: 322, 292
+  size: 158, 143
+  orig: 158, 143
+  offset: 0, 0
+  index: -1
+particle_levelup_6
+  rotate: false
+  xy: 162, 2
+  size: 158, 143
+  orig: 158, 143
+  offset: 0, 0
+  index: -1
+particle_levelup_7
+  rotate: false
+  xy: 322, 147
+  size: 158, 143
+  orig: 158, 143
+  offset: 0, 0
+  index: -1
+particle_levelup_8
+  rotate: false
+  xy: 482, 292
+  size: 158, 143
+  orig: 158, 143
+  offset: 0, 0
+  index: -1
+particle_levelup_9
+  rotate: false
+  xy: 322, 2
+  size: 158, 143
+  orig: 158, 143
+  offset: 0, 0
+  index: -1

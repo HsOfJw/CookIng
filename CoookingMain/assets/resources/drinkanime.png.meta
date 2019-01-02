@@ -1,0 +1,30 @@
+{
+  "ver": "2.0.0",
+  "uuid": "91ad1441-3663-406f-bd33-1e402c76db9e",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "subMetas": {
+    "drinkanime": {
+      "ver": "1.0.3",
+      "uuid": "d12e74fa-8389-4a5d-9ab4-661c86316a5c",
+      "rawTextureUuid": "91ad1441-3663-406f-bd33-1e402c76db9e",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": -40.5,
+      "offsetY": 8,
+      "trimX": 12,
+      "trimY": 11,
+      "width": 407,
+      "height": 90,
+      "rawWidth": 512,
+      "rawHeight": 128,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

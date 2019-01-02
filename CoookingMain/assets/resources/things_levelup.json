@@ -1,0 +1,51 @@
+{
+"skeleton": { "hash": "rAGiNVySCLhjDY8hMCyF0JkuddI", "spine": "3.6.53", "width": 158, "height": 143, "images": "" },
+"bones": [
+	{ "name": "root" },
+	{ "name": "things", "parent": "root" }
+],
+"slots": [
+	{ "name": "particle", "bone": "things", "attachment": "particle_levelup_1" }
+],
+"skins": {
+	"default": {
+		"particle": {
+			"particle_levelup_1": { "width": 158, "height": 143 },
+			"particle_levelup_2": { "width": 158, "height": 143 },
+			"particle_levelup_3": { "width": 158, "height": 143 },
+			"particle_levelup_4": { "width": 158, "height": 143 },
+			"particle_levelup_5": { "width": 158, "height": 143 },
+			"particle_levelup_6": { "width": 158, "height": 143 },
+			"particle_levelup_7": { "width": 158, "height": 143 },
+			"particle_levelup_8": { "width": 158, "height": 143 },
+			"particle_levelup_9": { "width": 158, "height": 143 },
+			"particle_levelup_10": { "width": 158, "height": 143 },
+			"particle_levelup_11": { "width": 158, "height": 143 },
+			"particle_levelup_12": { "width": 158, "height": 143 }
+		}
+	}
+},
+"animations": {
+	"1": {
+		"slots": {
+			"particle": {
+				"attachment": [
+					{ "time": 0, "name": "particle_levelup_1" },
+					{ "time": 0.0667, "name": "particle_levelup_2" },
+					{ "time": 0.1333, "name": "particle_levelup_3" },
+					{ "time": 0.2, "name": "particle_levelup_4" },
+					{ "time": 0.2667, "name": "particle_levelup_5" },
+					{ "time": 0.3333, "name": "particle_levelup_6" },
+					{ "time": 0.4, "name": "particle_levelup_7" },
+					{ "time": 0.4667, "name": "particle_levelup_8" },
+					{ "time": 0.5333, "name": "particle_levelup_9" },
+					{ "time": 0.6, "name": "particle_levelup_10" },
+					{ "time": 0.6667, "name": "particle_levelup_11" },
+					{ "time": 0.7333, "name": "particle_levelup_12" },
+					{ "time": 0.8, "name": null }
+				]
+			}
+		}
+	}
+}
+}

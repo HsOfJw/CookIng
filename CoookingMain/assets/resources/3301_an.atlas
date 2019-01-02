@@ -1,0 +1,132 @@
+
+3301_an.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+wangjunkai_shenti
+  rotate: true
+  xy: 109, 2
+  size: 44, 67
+  orig: 44, 67
+  offset: 0, 0
+  index: -1
+wangjunkai_tou
+  rotate: false
+  xy: 2, 13
+  size: 105, 113
+  orig: 105, 113
+  offset: 0, 0
+  index: -1
+wangjunkai_tui
+  rotate: false
+  xy: 109, 48
+  size: 35, 78
+  orig: 35, 78
+  offset: 0, 0
+  index: -1
+wangjunkai_yanjing
+  rotate: false
+  xy: 225, 67
+  size: 77, 28
+  orig: 77, 28
+  offset: 0, 0
+  index: -1
+wangjunkai_yanjingban
+  rotate: false
+  xy: 146, 97
+  size: 77, 29
+  orig: 77, 29
+  offset: 0, 0
+  index: -1
+wangjunkai_yanjingbi
+  rotate: false
+  xy: 146, 66
+  size: 77, 29
+  orig: 77, 29
+  offset: 0, 0
+  index: -1
+wangjunkai_yanjingshengqi
+  rotate: false
+  xy: 225, 97
+  size: 77, 29
+  orig: 77, 29
+  offset: 0, 0
+  index: -1
+wangjunkai_youdabi
+  rotate: true
+  xy: 181, 52
+  size: 12, 30
+  orig: 12, 30
+  offset: 0, 0
+  index: -1
+wangjunkai_youdabi_juqi
+  rotate: false
+  xy: 304, 94
+  size: 26, 32
+  orig: 26, 32
+  offset: 0, 0
+  index: -1
+wangjunkai_youxiaobi
+  rotate: true
+  xy: 146, 50
+  size: 14, 33
+  orig: 14, 33
+  offset: 0, 0
+  index: -1
+wangjunkai_zui_daxiao
+  rotate: false
+  xy: 431, 113
+  size: 28, 13
+  orig: 28, 13
+  offset: 0, 0
+  index: -1
+wangjunkai_zui_shengqi
+  rotate: false
+  xy: 461, 113
+  size: 28, 13
+  orig: 28, 13
+  offset: 0, 0
+  index: -1
+wangjunkai_zui_weiqu
+  rotate: false
+  xy: 304, 79
+  size: 28, 13
+  orig: 28, 13
+  offset: 0, 0
+  index: -1
+wangjunkai_zui_weixiao
+  rotate: false
+  xy: 334, 86
+  size: 25, 12
+  orig: 25, 12
+  offset: 0, 0
+  index: -1
+wangjunkai_zuodabi
+  rotate: true
+  xy: 304, 66
+  size: 11, 30
+  orig: 11, 30
+  offset: 0, 0
+  index: -1
+wangjunkai_zuodabi_juqi
+  rotate: true
+  xy: 363, 105
+  size: 21, 31
+  orig: 21, 31
+  offset: 0, 0
+  index: -1
+wangjunkai_zuoxiaobi
+  rotate: true
+  xy: 396, 112
+  size: 14, 33
+  orig: 14, 33
+  offset: 0, 0
+  index: -1
+wangjunkai_zuoxiaobi_jiandao
+  rotate: false
+  xy: 332, 100
+  size: 29, 26
+  orig: 29, 26
+  offset: 0, 0
+  index: -1
