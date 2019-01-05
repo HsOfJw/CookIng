@@ -28,7 +28,6 @@ cc.Class({
 
     init: function(itemId){
         this.m_itemId = itemId;
-
         var gold = null;
 
         var item = this.com.getMachineItemByID(itemId);
@@ -40,7 +39,7 @@ cc.Class({
                 gold = item.LevelUp;
             }
         }
-
+        
         var item = this.node.getChildByName("bg");
         item.getComponent(cc.Sprite).spriteFrame = new cc.SpriteFrame(this.com.res_loaded["png_" + itemId.toString() + "_s"]);
         if (gold == null || gold == 0){

@@ -1,0 +1,16 @@
+{
+  "certificatePath": "E:\\Documents\\svnProject\\program\\CoookingMain\\build-templates\\jsb-link\\sign\\release\\certificate.pem",
+  "deviceOrientation": "landscape",
+  "disabledMode": "",
+  "icon": "C:\\Users\\hs\\Desktop\\player.png",
+  "logLevel": "log",
+  "minPlatformVersion": "1020",
+  "name": "明星大厨",
+  "package": "com.jw.cooking.kyx.nearme.gamecenter",
+  "privatePath": "E:\\Documents\\svnProject\\program\\CoookingMain\\build-templates\\jsb-link\\sign\\release\\private.pem",
+  "tinyPackageMode": false,
+  "tinyPackageServer": "",
+  "useDebugKey": false,
+  "versionCode": "1",
+  "versionName": "1.0.001"
+}

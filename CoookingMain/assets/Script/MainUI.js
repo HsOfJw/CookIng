@@ -2,14 +2,10 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        m_auth: cc.Prefab,
         m_scrollView: cc.ScrollView,
         m_scrollViewContent: cc.Node,
         btn_back: cc.Button,
-        // m_bgm: {
-        //     default: null,
-        //     url: cc.AudioClip
-        // }
+        purchaseStore: cc.Prefab,
     },
 
     onLoad () {
@@ -88,6 +84,54 @@ cc.Class({
     },
 
     start () {
+        var levelUp = [];
+        var bool = true;        //是否已经解锁
+        var bool1 = true;       //是否要解锁
+        if(this.com.saveData.allStore == 2){
+            bool = true;
+        }else{
+            bool = false;
+            for(var key in this.com.saveData.shopItem){
+                var id = this.com.saveData.shopItem[key];
+                //第一个店商店里的ID
+                if (((id >= 1101 && id <= 1325) || (id >= 2101 && id <= 2313))){
+                    var gold = null;
+                    var item = this.com.getMachineItemByID(id);
+                    if (item){
+                        gold = item.levelUp;
+                    } else {
+                        item = this.com.getDishesByID(id);
+                        if (item){
+                            gold = item.LevelUp;
+                        }
+                    }
+                    levelUp.push(gold);
+                }
+            }
+            for(var key in levelUp){
+                if(levelUp[key] > 0){
+                    bool1 = false;
+                }
+            }
+        }
+
+        var item_node = this.m_scrollViewContent.getChildByName("item");
+        var weijiesuo_1 = item_node.getChildByName("weijiesuo_1");
+        var tip = weijiesuo_1.getChildByName("tip");
+        var Btn_unlock = weijiesuo_1.getChildByName("Btn_unlock");
+        tip.getComponent(cc.Sprite).spriteFrame = new cc.SpriteFrame(this.com.res_loaded["png_pic_dialogbg"]);
+        Btn_unlock.getComponent(cc.Sprite).spriteFrame = new cc.SpriteFrame(this.com.res_loaded["png_goumai_anniuda"]);
+        weijiesuo_1.getComponent(cc.Button).interactable = false;
+        if(bool == false){
+            if(bool1 == true){
+                tip.active = false;
+                Btn_unlock.active = true;
+            }
+        }else{
+            weijiesuo_1.getComponent(cc.Sprite).spriteFrame = new cc.SpriteFrame(this.com.res_loaded["png_ditu_zhongcanting"]);
+            tip.active = false;
+            weijiesuo_1.getComponent(cc.Button).interactable = true;
+        }
     },
 
     btnStart: function(event, coustEvent){
@@ -167,5 +211,18 @@ cc.Class({
         } else {
             this.com.initUserDataFromServer(usrId);
         }
+    },
+
+    btnBack(){
+        if(!this.com.saveData.curStore || this.com.saveData.curStore == 1){
+            this.btnStart();
+        }else{
+            this.btnCooking();
+        }
+    },
+
+    btnUnlock(){
+        var item = cc.instantiate(this.purchaseStore);
+        item.parent = this.node;
     },
 });

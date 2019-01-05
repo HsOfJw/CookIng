@@ -17,7 +17,7 @@ function initCom(){
     this.cfgNewScore = this.res_loaded["json_newScore"];
     this.cfgTask = this.res_loaded["json_task"];
 
-    console.log(this.cfgFood)
+    console.log(this.cfgParam)
 
     this.saveData.gold = this.getParam(1008).param;
 
@@ -79,6 +79,9 @@ function initUserDataFromServer(userId){
                     cc.director.loadScene('CookingUI');
                 }
             }
+            if(self.saveData.allStore == null){
+                self.saveData.allStore = 1;
+            }
         } else {
             if (userId == usrId){
                 var month = cc.sys.localStorage.getItem("month");
@@ -105,6 +108,8 @@ function initUserDataFromServer(userId){
                 if (loginShare) self.saveData.loginShare = JSON.parse(loginShare);
                 var curStore = cc.sys.localStorage.getItem("curStore");
                 if (curStore) self.saveData.curStore = Number(curStore);
+                var allStore = cc.sys.localStorage.getItem("allStore");
+                if (allStore) self.saveData.curStore = Number(allStore);
                 var startMonth = cc.sys.localStorage.getItem("startMonth");
                 if (startMonth) self.saveData.startMonth = JSON.parse(startMonth);
 
@@ -672,6 +677,19 @@ function getFoodProportion(id){
     return 1.0;
 }
 
+function getPurchase(){
+    var data = [300,3000];
+    this.cfgParam.forEach((val, key) => {
+        if(val.id == '1023'){
+            data[0] = Number(val.param);
+        }
+        if(val.id == '1024'){
+            data[1] = Number(val.param);
+        }
+    });
+    return data
+}
+
 module.exports = {
     project_name: "cooking",
     res_key: null,
@@ -716,7 +734,8 @@ module.exports = {
         achiveHistory: [],
         newbie: 0,
         loginShare: [0,0,0],
-        curStore: 1,
+        curStore: 1,            //当前店铺
+        allStore: 1,            //总共店铺
         startMonth: [],
     },
     //以下是全局方法
@@ -757,4 +776,5 @@ module.exports = {
     addGuide: addGuide,
     getTask: getTask,
     getFoodProportion: getFoodProportion,
+    getPurchase: getPurchase,
 };

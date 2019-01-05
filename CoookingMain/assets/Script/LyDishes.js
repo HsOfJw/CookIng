@@ -120,11 +120,11 @@ cc.Class({
     },
 
     addMaterial: function(material){
-        this.m_btnItem.runAction(cc.sequence(
-            cc.scaleTo(0.3, 1.2),
-            cc.scaleTo(0.2, 0.9),
-            cc.scaleTo(0.1, 1.0)
-        ));
+        // this.m_btnItem.runAction(cc.sequence(
+        //     cc.scaleTo(0.3, 1.2),
+        //     cc.scaleTo(0.2, 0.9),
+        //     cc.scaleTo(0.1, 1.0)
+        // ));
         this.m_dishes[this.m_dishes.length] = material;
         var id = this.com.getFoodCompose(this.m_dishes);
         if (id > 0){
@@ -163,12 +163,12 @@ cc.Class({
     // },
 
     btnClick: function(event){
-        var scale = this.m_btnItem.scale;
-        this.m_btnItem.runAction(cc.sequence(
-            cc.scaleTo(0.3, 1.2*scale),
-            cc.scaleTo(0.2, 0.9*scale),
-            cc.scaleTo(0.1, 1.0*scale)
-        ));
+        // var scale = this.m_btnItem.scale;
+        // this.m_btnItem.runAction(cc.sequence(
+        //     cc.scaleTo(0.3, 1.2*scale),
+        //     cc.scaleTo(0.2, 0.9*scale),
+        //     cc.scaleTo(0.1, 1.0*scale)
+        // ));
 
         var ret = this.com.isSameFoodCompose(this.m_dishes);
         var customerId = this.script_gameUI.canSellout(ret.id);

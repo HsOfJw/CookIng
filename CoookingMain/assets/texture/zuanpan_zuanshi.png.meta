@@ -1,9 +1,10 @@
 {
-  "ver": "2.0.0",
+  "ver": "2.2.0",
   "uuid": "f9f6aaf4-8ceb-4122-9c5f-882d27fa6ddf",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
+  "premultiplyAlpha": false,
   "subMetas": {
     "zuanpan_zuanshi": {
       "ver": "1.0.3",

@@ -682,11 +682,11 @@ cc.Class({
             jiu.x = 10000;
 
         var tgl = this.com.saveData.shopItem["240"];
-        this.com.loadTexture(this.node, ["240"], "png_"+tgl+"_s");
+        this.com.loadTexture(this.node, ["240"], "png_"+tgl+"_d");
 
         var jzl = this.com.saveData.shopItem["250"];
         if (jzl)
-            this.com.loadTexture(this.node, ["250"], "png_"+jzl+"_s");
+            this.com.loadTexture(this.node, ["250"], "png_"+jzl+"_d");
 
         var recycle = this.com.loadTexture(this.node, ["qianjing","recycle"], "png_lajitong");
         recycle.x = 364;
