@@ -385,25 +385,29 @@ cc.Class({
                 }
             })
         } else if (!cc.sys.isBrowser) {
-            console.log("游戏进入到 OPPO 真机中");
-            let tempFilePath = qg.env.USER_DATA_PATH + "/cfg.json";
-            qg.downloadFile({
-                url: this_.com.serverUrl_res + this_.com.project_name + '/Cfg.json',
-                header: {
-                    'content-type': 'application/json'
-                },
-                filePath: tempFilePath,
-                success(msg) {
-                    //下载
-                    cc.loader.load(tempFilePath, function (err, jsonData) {
-                        this_.cbLoadCfg(this_, jsonData);
-                    });
-                },
-                fail(msg) {
-                    // 下载失败
-                    console.log("失败", msg);
-                },
-            })
+            console.log("游戏进入到 OPPO真机中");
+            this.httpUtils._instance.httpGets(this_.com.serverUrl_res + this_.com.project_name + '/Cfg.json', function (res) {
+                console.log("使用原生请求", "errCode", res.statusCode, "errMsg=", res.data ,"length=",res.data.length);
+                //this_.cbLoadCfg(this_, res);
+            });
+            /* let tempFilePath = qg.env.USER_DATA_PATH + "/cfg.json";
+             qg.downloadFile({
+                 url: this_.com.serverUrl_res + this_.com.project_name + '/Cfg.json',
+                 header: {
+                     'content-type': 'application/json'
+                 },
+                 filePath: tempFilePath,
+                 success(msg) {
+                     //下载
+                     cc.loader.load(tempFilePath, function (err, jsonData) {
+                         this_.cbLoadCfg(this_, jsonData);
+                     });
+                 },
+                 fail(msg) {
+                     // 下载失败
+                     console.log("downloadFile cfg.json失败", msg);
+                 },
+             })*/
         } else {
             cc.loader.load({
                 url: this_.com.serverUrl_res + this_.com.project_name + '/Cfg.json',
@@ -415,12 +419,11 @@ cc.Class({
     },
 
     cbLoadCfg: function (this_, jsonData) {
-        console.log("jsonData------>", jsonData);
         console.log("jsonData.length =", jsonData.length);
         this_.com.res_cfg = jsonData;
         if (this_.com.res_cfg.length > 0) {
             this_.start_loading_json = false;
-            this_.load_dialog(this_);
+            //this_.load_dialog(this_);
             this_.load_res(this_);
 
             for (let i = 0; i < 5; i++) {
@@ -438,64 +441,137 @@ cc.Class({
     },
 
     loading: function (this_, index) {
-        console.log("进入到loading方法中");
         this_.start_loading = true;
         this_.cur_time = new Date().getTime();
         this_.curIndex = index;
-        cc.loader.load(this_.com.serverUrl_res + this_.com.res_cfg[index].filepath,
-            function (err, data) {
-                if (err) {
-                    console.log(" loading方法中  cc.loader.load 报错",this_.com.serverUrl_res + this_.com.res_cfg[index].filepath);
-                    for (let k in err) {
-                        console.log("err = ", k, err[k]);
-                    }
-                    console.log("err", err, data);
-                } else {
-                    console.log(" loading方法中  程序没有报错");
-                    this_.cur_time = new Date().getTime();
-                    var key = this_.com.res_cfg[index].filetype + "_" + this_.com.res_cfg[index].filename;
-                    this_.com.res_loaded[key] = data;
-
-                    if (this_.start_loading) {
-                        if (this_.curIndex + 1 < this_.com.res_cfg.length) {
-                            console.log("程序即将进入到loading方法中");
-                            this_.loading(this_, this_.curIndex + 1);
-                            var rate = this_.curIndex / this_.com.res_cfg.length;
-                            this_.m_progress.getComponent(cc.ProgressBar).progress = rate;
-                            this_.m_lbTips.string = Math.floor(rate * 100) + "%";
-
+        let fileType = this_.com.res_cfg[index].filetype;
+        if (fileType === "json") {//plist
+            console.log("filepath", this_.com.res_cfg[index].filepath);
+            //使用OPPO真机加载json文件
+            let tempFilePath = qg.env.USER_DATA_PATH + this_.com.res_cfg[index].filepath;
+            qg.downloadFile({
+                url: this_.com.serverUrl_res + this_.com.res_cfg[index].filepath,
+                header: {
+                    'content-type': 'application/json'
+                },
+                filePath: tempFilePath,
+                success(msg) {
+                    //下载
+                    cc.loader.load(tempFilePath, function (err, data) {
+                        if (err) {
+                            console.log("  qg.downloadFile  报错", err, data, this_.com.serverUrl_res + this_.com.res_cfg[index].filepath);
                         } else {
-                            var arr = Object.keys(this_.com.res_loaded);
-                            console.log(arr.length + "------" + this_.com.res_cfg.length);
-                            if (arr.length < 571) {
-                                cc.loader.clear();
-                                for (var i = 0; i < 5; i++) {
-                                    this_.loading(this_, i);
-                                }
-                                return;
-                            }
+                            this_.cur_time = new Date().getTime();
+                            var key = this_.com.res_cfg[index].filetype + "_" + this_.com.res_cfg[index].filename;
+                            this_.com.res_loaded[key] = data;
 
-                            this_.start_loading = false;
-                            this_.m_progress.node.active = false;
-                            this_.m_btn_stare.node.active = true;
-                            if (CC_WECHATGAME) {
-                                this_.createAuthorizeBtn(this_.m_btn_stare.node);
+                            if (this_.start_loading) {
+                                if (this_.curIndex + 1 < this_.com.res_cfg.length) {
+                                    //console.log("程序即将进入到loading方法中");
+                                    this_.loading(this_, this_.curIndex + 1);
+                                    var rate = this_.curIndex / this_.com.res_cfg.length;
+                                    this_.m_progress.getComponent(cc.ProgressBar).progress = rate;
+                                    this_.m_lbTips.string = Math.floor(rate * 100) + "%";
+                                } else {
+                                    var arr = Object.keys(this_.com.res_loaded);
+                                    console.log(arr.length + "------" + this_.com.res_cfg.length);
+                                    if (arr.length < 571) {
+                                        cc.loader.clear();
+                                        for (var i = 0; i < 5; i++) {
+                                            this_.loading(this_, i);
+                                        }
+                                        return;
+                                    }
+
+                                    this_.start_loading = false;
+                                    this_.m_progress.node.active = false;
+                                    this_.m_btn_stare.node.active = true;
+                                    if (CC_WECHATGAME) {
+                                        this_.createAuthorizeBtn(this_.m_btn_stare.node);
+                                    } else {
+                                        this_.m_btn_stare.node.on(cc.Node.EventType.TOUCH_END, function () {
+                                            //这里仅浏览器快速测试用
+                                            cc.sys.localStorage.setItem("usrId", 4020);
+                                            this.getToken(this);
+                                            this.com.initCom();
+                                            var usrId = cc.sys.localStorage.getItem("usrId");
+                                            this_.com.initUserDataFromServer(usrId);
+                                        }, this_);
+                                    }
+                                }
+                            }
+                        }
+                    });
+                },
+                fail(msg) {
+                    // 下载失败
+                    console.log("路径信息为", tempFilePath);
+                    console.log("qg.downloadFile失败", "errCode=", msg.errCode, "errMsg=", msg.errMsg, this_.com.res_cfg[index].filepath);
+                },
+            })
+
+
+            //加载json
+            //cc.loader.load(this_.com.serverUrl_res + this_.com.res_cfg[index].filepath, function (err, data) {
+
+            // })
+        } /*else if (fileType === "plist") {
+
+        } */ else if (fileType !== "plist") {
+            cc.loader.load(this_.com.serverUrl_res + this_.com.res_cfg[index].filepath,
+                function (err, data) {
+                    if (err) {
+                        console.log("loading方法中  cc.loader.load 的文件类型为", this_.com.res_cfg[index].filetype);
+                        console.log(" loading方法中 下载 报错", err, data, this_.com.serverUrl_res + this_.com.res_cfg[index].filepath);
+                        console.log("---------->");
+                    } else {
+                        //console.log(" loading方法中  程序没有报错");
+                        this_.cur_time = new Date().getTime();
+                        var key = this_.com.res_cfg[index].filetype + "_" + this_.com.res_cfg[index].filename;
+                        this_.com.res_loaded[key] = data;
+
+                        if (this_.start_loading) {
+                            if (this_.curIndex + 1 < this_.com.res_cfg.length) {
+                                //console.log("程序即将进入到loading方法中");
+                                this_.loading(this_, this_.curIndex + 1);
+                                var rate = this_.curIndex / this_.com.res_cfg.length;
+                                this_.m_progress.getComponent(cc.ProgressBar).progress = rate;
+                                this_.m_lbTips.string = Math.floor(rate * 100) + "%";
+
                             } else {
-                                console.log("程序是否走到此处");
-                                this_.m_btn_stare.node.on(cc.Node.EventType.TOUCH_END, function () {
-                                    //这里仅浏览器快速测试用
-                                    cc.sys.localStorage.setItem("usrId", 4020);
-                                    this.getToken(this);
-                                    this.com.initCom();
-                                    var usrId = cc.sys.localStorage.getItem("usrId");
-                                    this_.com.initUserDataFromServer(usrId);
-                                }, this_);
+                                var arr = Object.keys(this_.com.res_loaded);
+                                console.log(arr.length + "------" + this_.com.res_cfg.length);
+                                if (arr.length < 571) {
+                                    cc.loader.clear();
+                                    for (var i = 0; i < 5; i++) {
+                                        this_.loading(this_, i);
+                                    }
+                                    return;
+                                }
+
+                                this_.start_loading = false;
+                                this_.m_progress.node.active = false;
+                                this_.m_btn_stare.node.active = true;
+                                if (CC_WECHATGAME) {
+                                    this_.createAuthorizeBtn(this_.m_btn_stare.node);
+                                } else {
+                                    this_.m_btn_stare.node.on(cc.Node.EventType.TOUCH_END, function () {
+                                        //这里仅浏览器快速测试用
+                                        cc.sys.localStorage.setItem("usrId", 4020);
+                                        this.getToken(this);
+                                        this.com.initCom();
+                                        var usrId = cc.sys.localStorage.getItem("usrId");
+                                        this_.com.initUserDataFromServer(usrId);
+                                    }, this_);
+                                }
                             }
                         }
                     }
-                }
-            });
+                });
+        }
+
     },
+
 
     createAuthorizeBtn(btnNode) {
         let frameSize = cc.view.getFrameSize();
@@ -544,7 +620,8 @@ cc.Class({
             }
 
         });
-    },
+    }
+    ,
 
     update(dt) {
         if (this.start_loading) {
