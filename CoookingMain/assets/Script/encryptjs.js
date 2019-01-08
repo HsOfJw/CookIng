@@ -68,7 +68,7 @@
         var nonce = (new Date()).getTime();  // timestamp: milliseconds since 1-Jan-1970
         var nonceMs = nonce%1000;
         var nonceSec = Math.floor(nonce/1000);
-        var nonceRnd = Math.floor(cc.random0To1()*0xffff);
+        var nonceRnd = Math.floor(Math.random()*0xffff);
         // for debugging: nonce = nonceMs = nonceSec = nonceRnd = 0;
 
         for (var i=0; i<2; i++) counterBlock[i]   = (nonceMs  >>> i*8) & 0xff;

@@ -7,7 +7,7 @@ cc.Class({
         lbPraise: cc.RichText,
         m_GetRewardAudio: {
             default: null,
-            url: cc.AudioClip
+            type: cc.AudioClip
         },
     },
 

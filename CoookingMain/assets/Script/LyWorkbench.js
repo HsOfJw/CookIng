@@ -18,11 +18,11 @@ cc.Class({
 
         m_GrilledPasteAudio: {
             default: null,
-            url: cc.AudioClip
+            type: cc.AudioClip
         },
         m_FoodGoodAudio: {
             default: null,
-            url: cc.AudioClip
+            type: cc.AudioClip
         }
 
         // holdTimeEclipse: 0,        //用来检测长按
@@ -30,18 +30,18 @@ cc.Class({
         // hold_one_click: 0,         //用来检测单击
     },
 
-    onLoad () {
+    onLoad() {
         this.com = require('common');
         this.httpUtils = require("httpUtils");
 
         this.m_progress.getComponent(cc.ProgressBar).progress = 0;
-        
+
         var parent = this.node;
-        while (parent.parent != null){
+        while (parent.parent != null) {
             parent = parent.parent;
         }
         this.script_gameUI = parent.children[0].getComponent("GameUI");
-        if (this.com.saveData.curStore == 2){
+        if (this.com.saveData.curStore == 2) {
             this.script_gameUI = parent.children[0].getComponent("CookingUI");
         }
 
@@ -76,22 +76,22 @@ cc.Class({
         this.m_spBar.spriteFrame = new cc.SpriteFrame(this.com.res_loaded["png_penren_jingdutiao"]);
     },
 
-    start () {
+    start() {
     },
 
-    reset: function(machine, dishes, isLong){
+    reset: function (machine, dishes, isLong) {
         var drinkanime = this.node.getChildByName("drinkanime");
-        if (dishes == 1101){
+        if (dishes == 1101) {
             drinkanime.active = true;
             drinkanime.getComponent(sp.Skeleton).animation = 1;
-        } else if (dishes >= 1102 && dishes <= 1105){
+        } else if (dishes >= 1102 && dishes <= 1105) {
             drinkanime.active = true;
             drinkanime.getComponent(sp.Skeleton).animation = 2;
         } else {
             drinkanime.active = false;
 
             var item = this.node.getChildByName("item");
-            item.getComponent(cc.Sprite).spriteFrame = new cc.SpriteFrame(this.com.res_loaded["png_"+dishes+"_p"]);
+            item.getComponent(cc.Sprite).spriteFrame = new cc.SpriteFrame(this.com.res_loaded["png_" + dishes + "_p"]);
             //this.m_bg.getComponent(cc.Sprite).spriteFrame = new cc.SpriteFrame(this.com.res_loaded["png_"+dishes+"_p"]);
         }
 
@@ -107,30 +107,30 @@ cc.Class({
         this._isLong = isLong;
         this._machineType = this.com.getMachineType(this.m_machine);
         this._canScorch = this.com.canScorch(this.m_machine);
-        if (!this._canScorch){
+        if (!this._canScorch) {
             this.m_smoke.stopSystem();
         }
     },
 
-    over: function(){
+    over: function () {
         this.m_work = false;
         this.m_bg.enabled = false;
-        
-        if (!this._canScorch && this.script_gameUI.canAddTray() && this._machineType == 210){
+
+        if (!this._canScorch && this.script_gameUI.canAddTray() && this._machineType == 210) {
             this.m_item.x = 10000;
             this.m_progress.node.x = 10000;
             this.node.getChildByName("drinkanime").active = false;
             this.script_gameUI.addTray();
             return;
         }
-        if (!this._canScorch && this.com.saveData.curStore == 2 && this.script_gameUI.canAddTray() && this._machineType == 240){
+        if (!this._canScorch && this.com.saveData.curStore == 2 && this.script_gameUI.canAddTray() && this._machineType == 240) {
             this.m_item.x = 10000;
             this.m_progress.node.x = 10000;
             this.node.getChildByName("drinkanime").active = false;
             this.script_gameUI.addTray();
             return;
         }
-        if (!this._canScorch && this.com.saveData.curStore == 2 && this.script_gameUI.canAddDumplings() && this._machineType == 250){
+        if (!this._canScorch && this.com.saveData.curStore == 2 && this.script_gameUI.canAddDumplings() && this._machineType == 250) {
             this.m_item.x = 10000;
             this.m_progress.node.x = 10000;
             this.node.getChildByName("drinkanime").active = false;
@@ -141,17 +141,17 @@ cc.Class({
         var item = this.node.getChildByName("item");
 
         this.m_times++;
-        if (this.m_times == 1){
+        if (this.m_times == 1) {
             cc.audioEngine.playEffect(this.m_FoodGoodAudio, false);
 
-            item.getComponent(cc.Sprite).spriteFrame = new cc.SpriteFrame(this.com.res_loaded["png_"+this.m_dishes]);
+            item.getComponent(cc.Sprite).spriteFrame = new cc.SpriteFrame(this.com.res_loaded["png_" + this.m_dishes]);
             this.m_spProgress.spriteFrame = new cc.SpriteFrame(this.com.res_loaded["png_huo_jingdu"]);
             this.m_spBar.spriteFrame = new cc.SpriteFrame(this.com.res_loaded["png_huo_jingdutiao"]);
 
             // food_good
 
-            if (this._canScorch){
-                if (this.com.saveData.month == 1 && this.com.saveData.newbie >= 4102 && this.com.saveData.newbie <= 4104){
+            if (this._canScorch) {
+                if (this.com.saveData.month == 1 && this.com.saveData.newbie >= 4102 && this.com.saveData.newbie <= 4104) {
                     return;
                 }
 
@@ -160,10 +160,10 @@ cc.Class({
                 this.m_item.x = 10;
                 return;
             }
-        } else if (this.m_times == 2){
+        } else if (this.m_times == 2) {
             cc.audioEngine.playEffect(this.m_GrilledPasteAudio, false);
 
-            item.getComponent(cc.Sprite).spriteFrame = new cc.SpriteFrame(this.com.res_loaded["png_"+this.m_dishes+"_a"]);
+            item.getComponent(cc.Sprite).spriteFrame = new cc.SpriteFrame(this.com.res_loaded["png_" + this.m_dishes + "_a"]);
             this.node.dispatchEvent(new cc.Event.EventCustom("wasteDishes", true));
 
             this.m_smoke.stopSystem();
@@ -172,32 +172,32 @@ cc.Class({
         this.m_progress.node.x = 10000;
     },
 
-    evtTrigger: function(){
+    evtTrigger: function () {
         var json = this.com.getDurationByID(this.m_machine);
-        if (this.m_times == 0){
-            this.m_duration = json.duration*60;
+        if (this.m_times == 0) {
+            this.m_duration = json.duration * 60;
 
             var evt_1 = this.com.getMonthEvtByType(1);
-            for(var i in evt_1) { 
-                if ((this._machineType == 220 || this._machineType == 230) && cc.random0To1()*100 <= evt_1[i].eventPer){
-                    this.m_duration += evt_1[i].eventNum*60;
+            for (var i in evt_1) {
+                if ((this._machineType == 220 || this._machineType == 230) && Math.random() * 100 <= evt_1[i].eventPer) {
+                    this.m_duration += evt_1[i].eventNum * 60;
                     if (this.m_duration < 10) this.m_duration = 10;
                 }
             }
-        } else if (this.m_times == 1){
-            this.m_duration = json.scorch*60;
+        } else if (this.m_times == 1) {
+            this.m_duration = json.scorch * 60;
 
             var evt_2 = this.com.getMonthEvtByType(2);
-            for(var i in evt_2) { 
-                if ((this._machineType == 220 || this._machineType == 230) && cc.random0To1()*100 <= evt_2[i].eventPer){
-                    this.m_duration += evt_2[i].eventNum*60;
+            for (var i in evt_2) {
+                if ((this._machineType == 220 || this._machineType == 230) && Math.random() * 100 <= evt_2[i].eventPer) {
+                    this.m_duration += evt_2[i].eventNum * 60;
                     if (this.m_duration < 10) this.m_duration = 10;
                 }
             }
         }
     },
 
-    btnClick: function(){
+    btnClick: function () {
         var this_ = this;
         this.m_item.runAction(cc.sequence(
             cc.scaleTo(0.3, 1.2),
@@ -205,36 +205,36 @@ cc.Class({
             cc.scaleTo(0.1, 1.0)
         ));
 
-        if (this._canScorch && this.m_times == 1){
+        if (this._canScorch && this.m_times == 1) {
             var mType = this.com.getMaterialsType(this.m_dishes);
-            if (mType == 160 && this.script_gameUI.canAddCabinet(false)){
+            if (mType == 160 && this.script_gameUI.canAddCabinet(false)) {
                 this.script_gameUI.addCabinet(this.com.saveData.shopItem["160"], false);
                 this.node.removeFromParent(true);
-            } else if (mType == 170 && this.script_gameUI.canAddCabinet(true)){
+            } else if (mType == 170 && this.script_gameUI.canAddCabinet(true)) {
                 this.script_gameUI.addCabinet(this.com.saveData.shopItem["170"], true);
                 this.node.removeFromParent(true);
             } else {
                 //这里只是烤架类型，需要托盘类型才能获得托盘数量，所以这里写死加10
-                if (this.script_gameUI.canCompose(this.m_machine + 10, this.m_dishes, this._isLong)){
+                if (this.script_gameUI.canCompose(this.m_machine + 10, this.m_dishes, this._isLong)) {
                     this.script_gameUI.compose(this.m_machine + 10, this.m_dishes, this._isLong);
                     this.node.removeFromParent(true);
 
-                    if (this.com.saveData.month == 1 && this.com.saveData.newbie == 4104 && this.com.isSave){
-                        this.com.showGuide(this.com.saveData.newbie+1, this.script_gameUI.node, this.script_gameUI.m_newbie);
+                    if (this.com.saveData.month == 1 && this.com.saveData.newbie == 4104 && this.com.isSave) {
+                        this.com.showGuide(this.com.saveData.newbie + 1, this.script_gameUI.node, this.script_gameUI.m_newbie);
                     }
                 }
             }
         }
-    // },
+        // },
 
-    // btnDoubleClick: function(event){
+        // btnDoubleClick: function(event){
         //console.log("DoubleClick = " + this.m_machine + "   " + this.m_times);
-        if (this._canScorch && this.m_times == 2){
+        if (this._canScorch && this.m_times == 2) {
             var rect1 = this.script_gameUI.node.convertToWorldSpaceAR(this.script_gameUI.m_ndRecycle);
             var rect2 = this.node.convertToNodeSpaceAR(rect1);
             this_.m_item.runAction(cc.sequence(
                 cc.moveTo(0.5, cc.v2(rect2.x, rect2.y)),
-                cc.callFunc(function(){
+                cc.callFunc(function () {
                     this_.node.removeFromParent(true);
                 })
             ));
@@ -260,7 +260,7 @@ cc.Class({
     //                 this.btnDoubleClick(event);
     //             }              
     //         }, 400);
-            
+
     //     }
     //     else
     //     {
@@ -270,7 +270,7 @@ cc.Class({
     //     }
     // },
 
-    update (dt) {
+    update(dt) {
         if (!this.m_run)
             return;
 
@@ -282,30 +282,30 @@ cc.Class({
         //     }
         // }
 
-        if (this.m_work){
+        if (this.m_work) {
             this.evtTrigger();
-            if (this.m_step < this.m_duration){
+            if (this.m_step < this.m_duration) {
                 this.m_step++;
-                var progress = this.m_step/this.m_duration;
+                var progress = this.m_step / this.m_duration;
                 if (progress >= this.m_redTimePer && this.m_times == 1) {
                     this.m_spProgress.spriteFrame = new cc.SpriteFrame(this.com.res_loaded["png_huojinji_jingdu"]);
                     this.m_spBar.spriteFrame = new cc.SpriteFrame(this.com.res_loaded["png_huojinji_jingdutiao"]);
                 }
-                if (this.m_step >= this.m_duration){
+                if (this.m_step >= this.m_duration) {
                     this.over();
                     return;
                 }
-                this.m_progress.getComponent(cc.ProgressBar).progress = this.m_step/this.m_duration;
+                this.m_progress.getComponent(cc.ProgressBar).progress = this.m_step / this.m_duration;
             }
         }
-        if (!this.m_work && !this._canScorch){
-            if (this.script_gameUI.canAddTray() && this._machineType == 210){
+        if (!this.m_work && !this._canScorch) {
+            if (this.script_gameUI.canAddTray() && this._machineType == 210) {
                 this.reset(this.m_machine, this.m_dishes, this._isLong);
             }
-            if (this.com.saveData.curStore == 2 && this.script_gameUI.canAddTray() && this._machineType == 240){
+            if (this.com.saveData.curStore == 2 && this.script_gameUI.canAddTray() && this._machineType == 240) {
                 this.reset(this.m_machine, this.m_dishes, this._isLong);
             }
-            if (this.com.saveData.curStore == 2 && this.script_gameUI.canAddDumplings() && this._machineType == 250){
+            if (this.com.saveData.curStore == 2 && this.script_gameUI.canAddDumplings() && this._machineType == 250) {
                 this.reset(this.m_machine, this.m_dishes, this._isLong);
             }
             return;

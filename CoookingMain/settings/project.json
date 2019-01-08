@@ -15,14 +15,7 @@
   "design-resolution-width": 960,
   "excluded-modules": [
     "LabelOutline",
-    "TiledMap",
-    "Slider",
-    "VideoPlayer",
-    "WebView",
-    "MotionStreak",
-    "Physics",
-    "StudioComponent",
-    "Camera"
+    "MotionStreak"
   ],
   "facebook": {
     "appID": "",

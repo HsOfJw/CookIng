@@ -9,7 +9,7 @@ cc.Class({
         m_lbPeople: cc.Label,
         m_overAudio: {
             default: null,
-            url: cc.AudioClip
+            type: cc.AudioClip
         },
         m_animate: sp.Skeleton,
         m_dlgAward: cc.Prefab,
@@ -17,7 +17,7 @@ cc.Class({
 
         m_bgm: {
             default: null,
-            url: cc.AudioClip
+            type: cc.AudioClip
         }
     },
 
@@ -153,12 +153,12 @@ cc.Class({
         var this_ = this;
         var interval = 1.0;
         renwu.runAction(cc.sequence(
-            cc.moveTo(interval - 0.5, cc.p(-469.4, -120.5)),
+            cc.moveTo(interval - 0.5, cc.v2(-469.4, -120.5)),
             cc.callFunc(function(target, customData){
                 this_.node_anim = this_.panel_node.runAction(cc.sequence(
-                    cc.moveTo(0.3, cc.p(0,0)).easing(cc.easeIn(0.3)),
-                    cc.moveBy(0.15, cc.p(0,60)),
-                    cc.moveBy(0.15, cc.p(0,-60)),
+                    cc.moveTo(0.3, cc.v2(0,0)).easing(cc.easeIn(0.3)),
+                    cc.moveBy(0.15, cc.v2(0,60)),
+                    cc.moveBy(0.15, cc.v2(0,-60)),
                     cc.callFunc(function(){
                         renwu.x = 1000;
                         this_.m_animate.node.x = -495;
@@ -168,7 +168,7 @@ cc.Class({
                             this_.m_animate.getComponent(sp.Skeleton).animation = "gaoxin";
                         }
                         starFrame_0.runAction(cc.sequence(
-                            cc.moveTo(interval, cc.p(-210,104)),
+                            cc.moveTo(interval, cc.v2(-210,104)),
                             cc.callFunc(function(){
                                 if (ret[1] > 1){
                                     this_.m_animate.getComponent(sp.Skeleton).animation = "dagaoxin";    
@@ -177,7 +177,7 @@ cc.Class({
                                 }
 
                                 starFrame_1.runAction(cc.sequence(
-                                    cc.moveTo(interval, cc.p(-51,151)),
+                                    cc.moveTo(interval, cc.v2(-51,151)),
                                     cc.callFunc(function(){
                                         if (ret[2] > 1){
                                             this_.m_animate.getComponent(sp.Skeleton).animation = "dagaoxin";    
@@ -186,7 +186,7 @@ cc.Class({
                                         }
 
                                         starFrame_2.runAction(cc.sequence(
-                                            cc.moveTo(interval, cc.p(108,143)),
+                                            cc.moveTo(interval, cc.v2(108,143)),
                                             cc.delayTime(interval - 0.5),
                                             cc.callFunc(function(){
                                                 renwu.x = -469.4;
@@ -225,19 +225,19 @@ cc.Class({
                                             })
                                         ));
 
-                                        spPeople.runAction(cc.moveTo(interval, cc.p(118,20.8)));
+                                        spPeople.runAction(cc.moveTo(interval, cc.v2(118,20.8)));
                                         label2.getComponent(cc.Label).string = "X" + fin[2];
-                                        label2.runAction(cc.moveTo(interval, cc.p(121.7,-38.7)));
+                                        label2.runAction(cc.moveTo(interval, cc.v2(121.7,-38.7)));
                                     })
                                 ));        
-                                spPraise.runAction(cc.moveTo(interval, cc.p(-36.5,32.3)));
+                                spPraise.runAction(cc.moveTo(interval, cc.v2(-36.5,32.3)));
                                 label1.getComponent(cc.Label).string = "X" + fin[1];
-                                label1.runAction(cc.moveTo(interval, cc.p(-34,-24.8)));
+                                label1.runAction(cc.moveTo(interval, cc.v2(-34,-24.8)));
                             })
                         ));
-                        spSellFood.runAction(cc.moveTo(interval, cc.p(-189.6,-14.7)));
+                        spSellFood.runAction(cc.moveTo(interval, cc.v2(-189.6,-14.7)));
                         label0.getComponent(cc.Label).string = "X" + fin[0];
-                        label0.runAction(cc.moveTo(interval, cc.p(-185.8,-79.7)));
+                        label0.runAction(cc.moveTo(interval, cc.v2(-185.8,-79.7)));
                     })
                 ));
             })

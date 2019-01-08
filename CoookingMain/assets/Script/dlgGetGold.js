@@ -9,7 +9,7 @@ cc.Class({
 
         m_bgm: {
             default: null,
-            url: cc.AudioClip
+            type: cc.AudioClip
         }
     },
 
@@ -227,7 +227,7 @@ cc.Class({
     },
 
     navigateGame: function(giveAward){
-        var id = Math.floor(cc.random0To1() * this.com.cfgOtherGame.length);
+        var id = Math.floor(Math.random() * this.com.cfgOtherGame.length);
         var gameInfo = this.com.cfgOtherGame[id];
 
         var self = this;

@@ -1,0 +1,45 @@
+[
+  {
+    "ID": 0,
+    "sysName": "默认政策",
+    "name": "默认政策",
+    "des": "以服务顾客数为目标",
+    "num": 27
+  },
+  {
+    "ID": 1,
+    "sysName": "卫生第一",
+    "name": "卫生第一",
+    "des": "浪费5份食物则立即结束",
+    "num": 5,
+    "pic": "pic_nowaste",
+    "logo": "zhujiemian_nowaste"
+  },
+  {
+    "ID": 2,
+    "sysName": "商业为王",
+    "name": "商业为王",
+    "des": "以收入1000金币为目标",
+    "num": 1000,
+    "pic": "pic_moremoney",
+    "logo": "zhujiemian_moremoney"
+  },
+  {
+    "ID": 3,
+    "sysName": "顾客至上",
+    "name": "顾客至上",
+    "des": "流失顾客数达到5位则立即结束",
+    "num": 5,
+    "pic": "pic_nopeople",
+    "logo": "zhujiemian_nopeople"
+  },
+  {
+    "ID": 4,
+    "sysName": "服务至上",
+    "name": "服务至上",
+    "des": "10位顾客未给与好评则立即结束",
+    "num": 15,
+    "pic": "pic_goodly",
+    "logo": "zhujiemian_dianzan"
+  }
+]

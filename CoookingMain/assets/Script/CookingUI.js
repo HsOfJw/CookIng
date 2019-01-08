@@ -31,20 +31,20 @@ cc.Class({
         m_ndRecycle: cc.Node,
         m_reciveGoldAudio: {
             default: null,
-            url: cc.AudioClip
+            type: cc.AudioClip
         },
         m_reciveFeeAudio: {
             default: null,
-            url: cc.AudioClip
+            type: cc.AudioClip
         },
         m_FluctuateOverAudio: {
             default: null,
-            url: cc.AudioClip
+            type: cc.AudioClip
         },
 
         m_BarbecueAudio: {
             default: null,
-            url: cc.AudioClip
+            type: cc.AudioClip
         },
 
         m_peopleCurFlu: 0,                  //当前波的人数
@@ -288,13 +288,13 @@ cc.Class({
 
         var drinkDispenser = cc.instantiate(this.m_workbench);
         drinkDispenser.parent = this.node.getChildByName("drinkDispenser");
-        drinkDispenser.setPosition(cc.p(0,0));
+        drinkDispenser.setPosition(cc.v2(0,0));
 
         var jzl = this.com.saveData.shopItem["250"];
         if (jzl){
             var dumplingDispenser = cc.instantiate(this.m_workbench);
             dumplingDispenser.parent = this.node.getChildByName("dumplingDispenser");
-            dumplingDispenser.setPosition(cc.p(0,0));
+            dumplingDispenser.setPosition(cc.v2(0,0));
         }
 
         this.com.monthEvtInfo = [];
@@ -354,14 +354,14 @@ cc.Class({
         var drinkDispenser = cc.instantiate(this.m_workbench);
         drinkDispenser.parent = this.node.getChildByName("drinkDispenser");
         drinkDispenser.getComponent('LyWorkbench').reset(this.com.saveData.shopItem["240"], this.com.saveData.shopItem["140"], false);
-        drinkDispenser.setPosition(cc.p(0,0));
+        drinkDispenser.setPosition(cc.v2(0,0));
 
         var jzl = this.com.saveData.shopItem["250"];
         if (jzl){
             var dumplingDispenser = cc.instantiate(this.m_workbench);
             dumplingDispenser.parent = this.node.getChildByName("dumplingDispenser");
             dumplingDispenser.getComponent('LyWorkbench').reset(this.com.saveData.shopItem["250"], this.com.saveData.shopItem["150"], false);
-            dumplingDispenser.setPosition(cc.p(0,0));
+            dumplingDispenser.setPosition(cc.v2(0,0));
         }
 
         this.com.monthEvtInfo = [];
@@ -444,7 +444,7 @@ cc.Class({
             mubu.x = 0;
             var friendUI = cc.instantiate(this.m_friendUI);
             friendUI.parent = this.node;
-            friendUI.setPosition(cc.p(0,0));
+            friendUI.setPosition(cc.v2(0,0));
         }
 
         //this.initMonthEvt();
@@ -482,7 +482,7 @@ cc.Class({
 
         var lyEvtInfo = cc.instantiate(this.m_lyEvtInfo);
         lyEvtInfo.parent = this.node;
-        lyEvtInfo.setPosition(cc.p(0,0));
+        lyEvtInfo.setPosition(cc.v2(0,0));
         lyEvtInfo.getComponent('evtTips').init(evtInfo);
 
         var dstPos = this.m_ndMonthEvt.convertToWorldSpaceAR(iconItem.position);
@@ -533,7 +533,7 @@ cc.Class({
 
             var lyPolicy = cc.instantiate(this.m_policy);
             lyPolicy.parent = this.node;
-            lyPolicy.setPosition(cc.p(0,0));
+            lyPolicy.setPosition(cc.v2(0,0));
             lyPolicy.getComponent('showPolicy').init(monthTargetInfo);
             this._showMonthTargetInfo = true;
 
@@ -565,7 +565,7 @@ cc.Class({
                 
                 var wheel = cc.instantiate(this.m_wheel);
                 wheel.parent = this.node;
-                wheel.setPosition(cc.p(0,0));
+                wheel.setPosition(cc.v2(0,0));
 
                 this._loginShowActive = true;
                 this._loginShowActive1 = true;
@@ -614,7 +614,7 @@ cc.Class({
                     var lock = cc.instantiate(this.node.getChildByName("lock"));
                     lock.name = "lock";
                     lock.parent = nd_lock;
-                    lock.setPosition(cc.p(0,0));
+                    lock.setPosition(cc.v2(0,0));
 
                     this.com.loadTexture(this.node, [layerLock,"node_"+i,"lock"], "png_"+layerLock+i);
                 }
@@ -770,7 +770,7 @@ cc.Class({
                 var drinkDispenser = cc.instantiate(this.m_workbench);
                 drinkDispenser.parent = node;
                 drinkDispenser.getComponent('LyWorkbench').reset(machine, material, isLong);
-                drinkDispenser.setPosition(cc.p(0,0));
+                drinkDispenser.setPosition(cc.v2(0,0));
                 return;
             }
         }
@@ -923,7 +923,7 @@ cc.Class({
             }
         }
 
-        var id = Math.floor(cc.random0To1()*ids.length);
+        var id = Math.floor(Math.random()*ids.length);
         if (this.com.saveData.month == 1 && this.m_peopleNum == 1){
             id = 2;
         }
@@ -940,13 +940,13 @@ cc.Class({
         var bg = lyBuyers.getChildByName("bg");
         char.parent = bg;
 
-        var left = cc.random0To1() > 0.5;
+        var left = Math.random() > 0.5;
         let winSize = cc.view.getDesignResolutionSize();
         let left_x = -winSize.width;
         if (!left){
             left_x = winSize.width;
         }
-        char.setPosition(cc.p(left_x, 0));//-200
+        char.setPosition(cc.v2(left_x, 0));//-200
 
         if (this._monthTarget.ID == 0){
             this._curMonthTarget++;
@@ -955,7 +955,7 @@ cc.Class({
         var self = this;
         char.runAction(cc.spawn(
             cc.sequence(
-                cc.moveTo(3.5, cc.p(node.x + customer.getChildByName("character").x, 0)),//-200
+                cc.moveTo(3.5, cc.v2(node.x + customer.getChildByName("character").x, 0)),//-200
                 cc.callFunc(function(){
                     self.m_peopleCurFlu++;
 
@@ -970,8 +970,8 @@ cc.Class({
                 })
             ),
             cc.repeat(cc.sequence(
-                cc.moveBy(0.4, cc.p(0, 15)),
-                cc.moveBy(0.4, cc.p(0, -15)),
+                cc.moveBy(0.4, cc.v2(0, 15)),
+                cc.moveBy(0.4, cc.v2(0, -15)),
             ),5)
         ));
     },
@@ -1077,28 +1077,28 @@ cc.Class({
 
                     var evt_11 = this.com.getMonthEvtByType(11);
                     for(var ii in evt_11) { 
-                        if (cc.random0To1()*100 <= evt_11[ii].eventPer && this.m_foods % evt_11[ii].eventNum == 0){
+                        if (Math.random()*100 <= evt_11[ii].eventPer && this.m_foods % evt_11[ii].eventNum == 0){
                             this.m_praiseExt++;
                             this.givePraise(customerId, 1);
                         }
                     }
                     var evt_12 = this.com.getMonthEvtByType(12);
                     for(var ii in evt_12) { 
-                        if (cc.random0To1()*100 <= evt_12[ii].eventPer && dishes == 11101){
+                        if (Math.random()*100 <= evt_12[ii].eventPer && dishes == 11101){
                             this.m_praiseExt++;
                             this.givePraise(customerId, 1);
                         }
                     }
                     var evt_13 = this.com.getMonthEvtByType(13);
                     for(var ii in evt_13) { 
-                        if (cc.random0To1()*100 <= evt_13[ii].eventPer && this.m_foods % evt_13[ii].eventNum == 0){
+                        if (Math.random()*100 <= evt_13[ii].eventPer && this.m_foods % evt_13[ii].eventNum == 0){
                             //this.m_maxFluctuatePeople++;
                             this.givePeople(customerId, 1);
                         }
                     }
                     var evt_14 = this.com.getMonthEvtByType(14);
                     for(var ii in evt_14) { 
-                        if (cc.random0To1()*100 <= evt_14[ii].eventPer && dishes != 11101){
+                        if (Math.random()*100 <= evt_14[ii].eventPer && dishes != 11101){
                             customer.m_money += evt_14[ii].eventNum;
                         }
                     }
@@ -1116,7 +1116,7 @@ cc.Class({
 
                         var evt_7 = this.com.getMonthEvtByType(7);
                         for(var ii in evt_7) { 
-                            if (cc.random0To1()*100 <= evt_7[ii].eventPer){
+                            if (Math.random()*100 <= evt_7[ii].eventPer){
                                 this.m_feeGold += evt_7[ii].eventNum;
                             }
                         }
@@ -1128,18 +1128,18 @@ cc.Class({
                             customer._behaviour = "happy";
                         }
 
-                        if (customer._behaviour == "happy" && cc.random0To1() < feePer){
+                        if (customer._behaviour == "happy" && Math.random() < feePer){
                             var per = this.com.getParam(1005).param;
 
                             var evt_4 = this.com.getMonthEvtByType(4);
                             for(var ii in evt_4) { 
-                                if (cc.random0To1()*100 <= evt_4[ii].eventPer){
+                                if (Math.random()*100 <= evt_4[ii].eventPer){
                                     per = per * (1 + evt_4[ii].eventNum);
                                 }
                             }
                             var evt_6 = this.com.getMonthEvtByType(6);
                             for(var ii in evt_6) { 
-                                if (cc.random0To1()*100 <= evt_6[ii].eventPer){
+                                if (Math.random()*100 <= evt_6[ii].eventPer){
                                     // this.com.setComData("diamond", this.com.saveData.diamond + evt_6[ii].eventNum);
                                     this.giveDiamond(evt_6[ii].eventNum, customerId);
                                 }
@@ -1149,14 +1149,14 @@ cc.Class({
                             
                             var evt_8 = this.com.getMonthEvtByType(8);
                             for(var ii in evt_8) { 
-                                if (cc.random0To1()*100 <= evt_8[ii].eventPer && humanType == 2){
+                                if (Math.random()*100 <= evt_8[ii].eventPer && humanType == 2){
                                     // this.com.setComData("diamond", this.com.saveData.diamond + evt_8[ii].eventNum);
                                     this.giveDiamond(evt_8[ii].eventNum, customerId);
                                 }
                             }
                             var evt_9 = this.com.getMonthEvtByType(9);
                             for(var ii in evt_9) { 
-                                if (cc.random0To1()*100 <= evt_9[ii].eventPer && humanType == 3){
+                                if (Math.random()*100 <= evt_9[ii].eventPer && humanType == 3){
                                     // this.com.setComData("diamond", this.com.saveData.diamond + evt_9[ii].eventNum);
                                     this.giveDiamond(evt_9[ii].eventNum, customerId);
                                 }
@@ -1168,7 +1168,7 @@ cc.Class({
                         }
                         var evt_15 = this.com.getMonthEvtByType(15);
                         for(var ii in evt_15) { 
-                            if (cc.random0To1()*100 <= evt_15[ii].eventPer){
+                            if (Math.random()*100 <= evt_15[ii].eventPer){
                                 customer.m_money += evt_15[ii].eventNum;
                                 cc.audioEngine.playEffect(this.m_reciveFeeAudio, false);
                             }
@@ -1307,7 +1307,7 @@ cc.Class({
         spPraise.runAction(cc.sequence(
             cc.delayTime(1.0),
             cc.spawn(
-                cc.moveBy(0.2, cc.p(0, 10)),
+                cc.moveBy(0.2, cc.v2(0, 10)),
                 cc.fadeOut(0.2)
             ),
             cc.callFunc(function(target, data){
@@ -1343,7 +1343,7 @@ cc.Class({
         spPraise.runAction(cc.sequence(
             cc.delayTime(1.3),
             cc.spawn(
-                cc.moveBy(0.2, cc.p(0, 10)),
+                cc.moveBy(0.2, cc.v2(0, 10)),
                 cc.fadeOut(0.2)
             ),
             cc.callFunc(function(target, data){
@@ -1411,7 +1411,7 @@ cc.Class({
                             var dumplingDispenser = cc.instantiate(this.m_workbench);
                             dumplingDispenser.parent = this.node.getChildByName("dumplingDispenser");
                             dumplingDispenser.getComponent('LyWorkbench').reset(shopItem["250"], shopItem["150"], false);
-                            dumplingDispenser.setPosition(cc.p(0,0));
+                            dumplingDispenser.setPosition(cc.v2(0,0));
                         }
                         if (food["food"+j] == 150 && shopItem["251"] == null){
                             shopItem["251"] = 2511;
@@ -1485,7 +1485,7 @@ cc.Class({
             var monthover = cc.instantiate(this.m_monthover);
             monthover.parent = this.node;
             monthover.getComponent('LyMonthOver').init(data);
-            monthover.setPosition(cc.p(0,0));
+            monthover.setPosition(cc.v2(0,0));
             this._showMonthOver = true;
 
             var aldStr = '第' + (this.com.saveData.month + 1).toString() + '月';
@@ -1504,7 +1504,7 @@ cc.Class({
             var friendOver = cc.instantiate(this.m_friendOver);
             friendOver.parent = this.node;
             friendOver.getComponent('LyFriendOver').init(data);
-            friendOver.setPosition(cc.p(0,0));
+            friendOver.setPosition(cc.v2(0,0));
         }
 
         this.initDesk();
@@ -1702,7 +1702,7 @@ cc.Class({
         var updateShop = cc.instantiate(this.m_updateShop);
         updateShop.parent = this.node;
         updateShop.getComponent('LyUpdateShop').init();
-        updateShop.setPosition(cc.p(0,0));
+        updateShop.setPosition(cc.v2(0,0));
 
         var btnPauseBG = this.node.getChildByName("btnPauseBG");
         btnPauseBG.active = false;
@@ -1728,7 +1728,7 @@ cc.Class({
 
         var wheel = cc.instantiate(this.m_wheel);
         wheel.parent = this.node;
-        wheel.setPosition(cc.p(0,0));
+        wheel.setPosition(cc.v2(0,0));
     },
 
     BtnWorld: function(event, coustEvent){
@@ -1766,7 +1766,7 @@ cc.Class({
 
         var lyAchivement = cc.instantiate(this.m_achivement);
         lyAchivement.parent = this.node;
-        lyAchivement.setPosition(cc.p(0,0));
+        lyAchivement.setPosition(cc.v2(0,0));
     },
 
     BtnGam: function(event, coustEvent){
@@ -1776,7 +1776,7 @@ cc.Class({
 
         var lyGame = cc.instantiate(this.m_gam);
         lyGame.parent = this.node;
-        lyGame.setPosition(cc.p(0,0));
+        lyGame.setPosition(cc.v2(0,0));
     },
 
     BtnRank: function(event, coustEvent){
@@ -1786,7 +1786,7 @@ cc.Class({
 
         var lyRank = cc.instantiate(this.m_rank);
         lyRank.parent = this.node;
-        lyRank.setPosition(cc.p(0,0));
+        lyRank.setPosition(cc.v2(0,0));
     },
 
     BtnShowPolicy: function(event, coustEvent){
@@ -1796,7 +1796,7 @@ cc.Class({
         if (this._monthTarget.ID > 0){
             var lyPolicy = cc.instantiate(this.m_policy);
             lyPolicy.parent = this.node;
-            lyPolicy.setPosition(cc.p(0,0));
+            lyPolicy.setPosition(cc.v2(0,0));
             lyPolicy.getComponent('showPolicy').init(monthTargetInfo);
             this._showMonthTargetInfo = true;
 
@@ -1884,7 +1884,7 @@ cc.Class({
             var isShowPraise = false;
             var evt_10 = this.com.getMonthEvtByType(10);
             for(var i in evt_10) { 
-                if (cc.random0To1()*100 <= evt_10[i].eventPer){
+                if (Math.random()*100 <= evt_10[i].eventPer){
                     this.m_praiseExt++;
                     // this.com.setComData("praise", this.com.saveData.praise + 1);
                     this.givePraise(param.id, 2);
@@ -1903,7 +1903,7 @@ cc.Class({
         if (param.behaviour != "happy" && this._monthTarget.ID == 4){
             this.reachGoal(1);
         }
-        var rand = cc.random0To1();
+        var rand = Math.random();
         if (param.behaviour == "angry" && rand <= 0.5){
             this.m_praise = (this.m_praise - 1) > 0 ? (this.m_praise) - 1 : 0;
             var praise_ = (this.com.saveData.praise - 1) > 0 ? (this.com.saveData.praise - 1) : 0;
@@ -1924,7 +1924,7 @@ cc.Class({
         var newVec2 = bg.convertToNodeSpaceAR(newVec1);
         char.setPosition(newVec2);
 
-        var left = cc.random0To1() > 0.5;
+        var left = Math.random() > 0.5;
         let winSize = cc.view.getDesignResolutionSize();
         let left_x = -winSize.width;
         if (!left){
@@ -1944,7 +1944,7 @@ cc.Class({
         var this_ = this;
         char.runAction(cc.spawn(
             cc.sequence(
-                cc.moveTo(3.5, cc.p(left_x, 0)),//-200
+                cc.moveTo(3.5, cc.v2(left_x, 0)),//-200
                 cc.callFunc(function(){
                     console.log(this_._monthTarget.ID, this_._leavePeople, this_._monthTarget.num)
                     if (this_._monthTarget.ID == 0 && this_._leavePeople >= this_._monthTarget.num){
@@ -1996,8 +1996,8 @@ cc.Class({
                 })
             ),
             cc.repeat(cc.sequence(
-                cc.moveBy(0.4, cc.p(0, 15)),
-                cc.moveBy(0.4, cc.p(0, -15)),
+                cc.moveBy(0.4, cc.v2(0, 15)),
+                cc.moveBy(0.4, cc.v2(0, -15)),
             ),5)
         ));
 
@@ -2052,7 +2052,7 @@ cc.Class({
                     var lock = cc.instantiate(this.node.getChildByName("lock"));
                     lock.name = "lock";
                     lock.parent = nd_lock;
-                    lock.setPosition(cc.p(0,0));
+                    lock.setPosition(cc.v2(0,0));
 
                     this.com.loadTexture(this.node, [layerLock,"node_"+i,"lock"], "png_"+layerLock+i);
                 }
@@ -2149,7 +2149,7 @@ cc.Class({
 
         var lyEvtInfo = cc.instantiate(this.m_lyEvtInfo);
         lyEvtInfo.parent = this.node;
-        lyEvtInfo.setPosition(cc.p(0,0));
+        lyEvtInfo.setPosition(cc.v2(0,0));
         lyEvtInfo.getComponent('evtTips').init(param.evtInfo);
 
         var this_ = this;

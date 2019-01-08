@@ -47,7 +47,7 @@ cc.Class({
         },
         effectAudio:{
             default:null,
-            url:cc.AudioClip
+            type:cc.AudioClip
         },
         activeScrollViewContent: cc.Node,
         activeItem: cc.Prefab,
@@ -56,7 +56,7 @@ cc.Class({
 
         m_bgm: {
             default: null,
-            url: cc.AudioClip
+            type: cc.AudioClip
         }
     },
 

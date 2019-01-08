@@ -12,7 +12,7 @@ cc.Class({
         btn_back_qun_button: cc.Button,
         m_upGradeAudio: {
             default: null,
-            url: cc.AudioClip
+            type: cc.AudioClip
         },
     },
 

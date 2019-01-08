@@ -72,7 +72,7 @@ cc.Class({
                     ));
                 }
             } else {
-                this.setPosition(cc.p(0,0));
+                this.setPosition(cc.v2(0,0));
             }
         },this.m_btnItem);
 

@@ -1,0 +1,50 @@
+[
+  {
+    "position": 1,
+    "reward": 1,
+    "rewardNum": 3000,
+    "power": 50
+  },
+  {
+    "position": 2,
+    "reward": 3,
+    "rewardNum": 3,
+    "power": 100
+  },
+  {
+    "position": 3,
+    "reward": 2,
+    "rewardNum": 30,
+    "power": 100
+  },
+  {
+    "position": 4,
+    "reward": 4,
+    "rewardNum": 1,
+    "power": 100
+  },
+  {
+    "position": 5,
+    "reward": 3,
+    "rewardNum": 10,
+    "power": 50
+  },
+  {
+    "position": 6,
+    "reward": 2,
+    "rewardNum": 100,
+    "power": 100
+  },
+  {
+    "position": 7,
+    "reward": 1,
+    "rewardNum": 1000,
+    "power": 100
+  },
+  {
+    "position": 8,
+    "reward": 3,
+    "rewardNum": 1,
+    "power": 50
+  }
+]

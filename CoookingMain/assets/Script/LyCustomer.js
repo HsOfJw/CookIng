@@ -19,7 +19,7 @@ cc.Class({
         this.com = require('common');
         this.httpUtils = require("httpUtils");
 
-        var id = Math.floor(cc.random0To1() * this.com.humanIds.length);
+        var id = Math.floor(Math.random() * this.com.humanIds.length);
         this._humanId = this.com.humanIds[id];
         this.com.humanIds.splice(id, 1);
 
@@ -49,7 +49,7 @@ cc.Class({
 
         var evt_5 = this.com.getMonthEvtByType(5);
         for(var i in evt_5) { 
-            if (cc.random0To1()*100 <= evt_5[i].eventPer){
+            if (Math.random()*100 <= evt_5[i].eventPer){
                 this._totalWaitTime += evt_5[i].eventNum*60;
             }
         }
@@ -213,7 +213,7 @@ cc.Class({
 
         var evt_3 = this.com.getMonthEvtByType(3);
         for(var i in evt_3) { 
-            if (cc.random0To1()*100 <= evt_3[i].eventPer){
+            if (Math.random()*100 <= evt_3[i].eventPer){
                 this.m_waitTimePer -= evt_3[i].eventNum;
                 this.m_redTimePer = 1 - ((1 - this.m_redTimePer) + evt_3[i].eventNum);
             }

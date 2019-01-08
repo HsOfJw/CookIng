@@ -1,3 +1,4 @@
+let JsonFileCfg = require("JsonFileCfg");
 cc.Class({
     extends: cc.Component,
 
@@ -9,12 +10,13 @@ cc.Class({
         panel_tip: cc.Node,
         m_bgm: {
             default: null,
-            url: cc.AudioClip
+            type: cc.AudioClip
         }
     },
 
     // use this for initialization
     onLoad: function () {
+        JsonFileCfg.initJson();
         var this_ = this;
         this.com = require('common');
         this.httpUtils = require("httpUtils");
@@ -29,7 +31,7 @@ cc.Class({
         this.start_loading_json = false;
         this.cur_time_json = 0;
 
-        cc.eventManager.addCustomListener(cc.game.EVENT_HIDE, function () {
+        cc.systemEvent.on(cc.game.EVENT_HIDE, function () {
             cc.audioEngine.stopAll();
             this_.start_loading = false;
 
@@ -38,7 +40,7 @@ cc.Class({
             // //cc.game.removePersistRootNode(this_.com._globalNode);
             // if (this_.com._globalNode) this_.com._globalNode.destroy();
         });
-        cc.eventManager.addCustomListener(cc.game.EVENT_SHOW, function () {
+        cc.systemEvent.on(cc.game.EVENT_SHOW, function () {
             var music = cc.sys.localStorage.getItem("CloseMusic");
             if (music == 0 || music == null) {
                 cc.sys.localStorage.setItem("CloseMusic", 1); //1-开启；2-关闭
@@ -108,24 +110,15 @@ cc.Class({
 
     load_dialog(this_) {
         console.log("进入到load_dialog方法中");
-        this_.dialog_anim = null;
-        for (var i = 0; i < this_.com.res_cfg.length; i++) {
-            if (this_.com.res_cfg[i].filename == "dialog") {
-                cc.loader.load({
-                    url: this_.com.serverUrl_res + this_.com.res_cfg[i].filepath,
-                    type: this_.com.res_cfg[i].filetype
-                }, function (err, data) {
-                    this_.dialog_anim = this_.m_lab_dialog.node.runAction(cc.repeatForever(cc.sequence(cc.callFunc(function () {
-                        var random = Math.floor(cc.random0To1() * data.length) + 5001;
-                        for (var j = 0; j < data.length; j++) {
-                            if (data[j].id == random) {
-                                this_.m_lab_dialog.string = data[j].dialog;
-                            }
-                        }
-                    }), cc.delayTime(3))));
-                });
+        let data = JsonFileCfg.file.dialog.data.data;
+        this_.m_lab_dialog.node.runAction(cc.repeatForever(cc.sequence(cc.callFunc(function () {
+            var random = Math.floor(Math.random() * data.length) + 5001;
+            for (var j = 0; j < data.length; j++) {
+                if (data[j].id == random) {
+                    this_.m_lab_dialog.string = data[j].dialog;
+                }
             }
-        }
+        }), cc.delayTime(3))));
     },
 
     load_res(this_) {
@@ -386,28 +379,24 @@ cc.Class({
             })
         } else if (!cc.sys.isBrowser) {
             console.log("游戏进入到 OPPO真机中");
-            this.httpUtils._instance.httpGets(this_.com.serverUrl_res + this_.com.project_name + '/Cfg.json', function (res) {
-                console.log("使用原生请求", "errCode", res.statusCode, "errMsg=", res.data ,"length=",res.data.length);
-                //this_.cbLoadCfg(this_, res);
-            });
-            /* let tempFilePath = qg.env.USER_DATA_PATH + "/cfg.json";
-             qg.downloadFile({
-                 url: this_.com.serverUrl_res + this_.com.project_name + '/Cfg.json',
-                 header: {
-                     'content-type': 'application/json'
-                 },
-                 filePath: tempFilePath,
-                 success(msg) {
-                     //下载
-                     cc.loader.load(tempFilePath, function (err, jsonData) {
-                         this_.cbLoadCfg(this_, jsonData);
-                     });
-                 },
-                 fail(msg) {
-                     // 下载失败
-                     console.log("downloadFile cfg.json失败", msg);
-                 },
-             })*/
+            let tempFilePath = qg.env.USER_DATA_PATH + "/cfg.json";
+            qg.downloadFile({
+                url: this_.com.serverUrl_res + this_.com.project_name + '/Cfg.json',
+                header: {
+                    'content-type': 'application/json'
+                },
+                filePath: tempFilePath,
+                success(msg) {
+                    //下载
+                    cc.loader.load(tempFilePath, function (err, jsonData) {
+                        this_.cbLoadCfg(this_, jsonData);
+                    });
+                },
+                fail(msg) {
+                    // 下载失败
+                    console.log("downloadFile cfg.json失败", msg);
+                },
+            })
         } else {
             cc.loader.load({
                 url: this_.com.serverUrl_res + this_.com.project_name + '/Cfg.json',
@@ -423,7 +412,7 @@ cc.Class({
         this_.com.res_cfg = jsonData;
         if (this_.com.res_cfg.length > 0) {
             this_.start_loading_json = false;
-            //this_.load_dialog(this_);
+            this_.load_dialog(this_);
             this_.load_res(this_);
 
             for (let i = 0; i < 5; i++) {
@@ -445,131 +434,54 @@ cc.Class({
         this_.cur_time = new Date().getTime();
         this_.curIndex = index;
         let fileType = this_.com.res_cfg[index].filetype;
-        if (fileType === "json") {//plist
-            console.log("filepath", this_.com.res_cfg[index].filepath);
-            //使用OPPO真机加载json文件
-            let tempFilePath = qg.env.USER_DATA_PATH + this_.com.res_cfg[index].filepath;
-            qg.downloadFile({
-                url: this_.com.serverUrl_res + this_.com.res_cfg[index].filepath,
-                header: {
-                    'content-type': 'application/json'
-                },
-                filePath: tempFilePath,
-                success(msg) {
-                    //下载
-                    cc.loader.load(tempFilePath, function (err, data) {
-                        if (err) {
-                            console.log("  qg.downloadFile  报错", err, data, this_.com.serverUrl_res + this_.com.res_cfg[index].filepath);
+        if (fileType === "json" || fileType === "plist") {
+            this_.loading(this_, this_.curIndex + 1);
+        } else {
+            cc.loader.load(this_.com.serverUrl_res + this_.com.res_cfg[index].filepath, function (err, data) {
+                if (err) {
+                    console.log("   cc.loader.load  报错", err, data, this_.com.serverUrl_res + this_.com.res_cfg[index].filepath);
+                } else {
+                    this_.cur_time = new Date().getTime();
+
+                    var key = this_.com.res_cfg[index].filetype + "_" + this_.com.res_cfg[index].filename;
+                    this_.com.res_loaded[key] = data;
+
+                    if (this_.start_loading) {
+                        if (this_.curIndex + 1 < this_.com.res_cfg.length) {
+                            this_.loading(this_, this_.curIndex + 1);
+                            var rate = this_.curIndex / this_.com.res_cfg.length;
+                            this_.m_progress.getComponent(cc.ProgressBar).progress = rate;
+                            this_.m_lbTips.string = Math.floor(rate * 100) + "%";
                         } else {
-                            this_.cur_time = new Date().getTime();
-                            var key = this_.com.res_cfg[index].filetype + "_" + this_.com.res_cfg[index].filename;
-                            this_.com.res_loaded[key] = data;
-
-                            if (this_.start_loading) {
-                                if (this_.curIndex + 1 < this_.com.res_cfg.length) {
-                                    //console.log("程序即将进入到loading方法中");
-                                    this_.loading(this_, this_.curIndex + 1);
-                                    var rate = this_.curIndex / this_.com.res_cfg.length;
-                                    this_.m_progress.getComponent(cc.ProgressBar).progress = rate;
-                                    this_.m_lbTips.string = Math.floor(rate * 100) + "%";
-                                } else {
-                                    var arr = Object.keys(this_.com.res_loaded);
-                                    console.log(arr.length + "------" + this_.com.res_cfg.length);
-                                    if (arr.length < 571) {
-                                        cc.loader.clear();
-                                        for (var i = 0; i < 5; i++) {
-                                            this_.loading(this_, i);
-                                        }
-                                        return;
-                                    }
-
-                                    this_.start_loading = false;
-                                    this_.m_progress.node.active = false;
-                                    this_.m_btn_stare.node.active = true;
-                                    if (CC_WECHATGAME) {
-                                        this_.createAuthorizeBtn(this_.m_btn_stare.node);
-                                    } else {
-                                        this_.m_btn_stare.node.on(cc.Node.EventType.TOUCH_END, function () {
-                                            //这里仅浏览器快速测试用
-                                            cc.sys.localStorage.setItem("usrId", 4020);
-                                            this.getToken(this);
-                                            this.com.initCom();
-                                            var usrId = cc.sys.localStorage.getItem("usrId");
-                                            this_.com.initUserDataFromServer(usrId);
-                                        }, this_);
-                                    }
+                            var arr = Object.keys(this_.com.res_loaded);
+                            console.log(arr.length + "------" + this_.com.res_cfg.length);
+                            if (arr.length < 571) {
+                                cc.loader.clear();
+                                for (var i = 0; i < 5; i++) {
+                                    this_.loading(this_, i);
                                 }
+                                return;
                             }
-                        }
-                    });
-                },
-                fail(msg) {
-                    // 下载失败
-                    console.log("路径信息为", tempFilePath);
-                    console.log("qg.downloadFile失败", "errCode=", msg.errCode, "errMsg=", msg.errMsg, this_.com.res_cfg[index].filepath);
-                },
-            })
-
-
-            //加载json
-            //cc.loader.load(this_.com.serverUrl_res + this_.com.res_cfg[index].filepath, function (err, data) {
-
-            // })
-        } /*else if (fileType === "plist") {
-
-        } */ else if (fileType !== "plist") {
-            cc.loader.load(this_.com.serverUrl_res + this_.com.res_cfg[index].filepath,
-                function (err, data) {
-                    if (err) {
-                        console.log("loading方法中  cc.loader.load 的文件类型为", this_.com.res_cfg[index].filetype);
-                        console.log(" loading方法中 下载 报错", err, data, this_.com.serverUrl_res + this_.com.res_cfg[index].filepath);
-                        console.log("---------->");
-                    } else {
-                        //console.log(" loading方法中  程序没有报错");
-                        this_.cur_time = new Date().getTime();
-                        var key = this_.com.res_cfg[index].filetype + "_" + this_.com.res_cfg[index].filename;
-                        this_.com.res_loaded[key] = data;
-
-                        if (this_.start_loading) {
-                            if (this_.curIndex + 1 < this_.com.res_cfg.length) {
-                                //console.log("程序即将进入到loading方法中");
-                                this_.loading(this_, this_.curIndex + 1);
-                                var rate = this_.curIndex / this_.com.res_cfg.length;
-                                this_.m_progress.getComponent(cc.ProgressBar).progress = rate;
-                                this_.m_lbTips.string = Math.floor(rate * 100) + "%";
-
+                            this_.start_loading = false;
+                            this_.m_progress.node.active = false;
+                            this_.m_btn_stare.node.active = true;
+                            if (CC_WECHATGAME) {
+                                this_.createAuthorizeBtn(this_.m_btn_stare.node);
                             } else {
-                                var arr = Object.keys(this_.com.res_loaded);
-                                console.log(arr.length + "------" + this_.com.res_cfg.length);
-                                if (arr.length < 571) {
-                                    cc.loader.clear();
-                                    for (var i = 0; i < 5; i++) {
-                                        this_.loading(this_, i);
-                                    }
-                                    return;
-                                }
-
-                                this_.start_loading = false;
-                                this_.m_progress.node.active = false;
-                                this_.m_btn_stare.node.active = true;
-                                if (CC_WECHATGAME) {
-                                    this_.createAuthorizeBtn(this_.m_btn_stare.node);
-                                } else {
-                                    this_.m_btn_stare.node.on(cc.Node.EventType.TOUCH_END, function () {
-                                        //这里仅浏览器快速测试用
-                                        cc.sys.localStorage.setItem("usrId", 4020);
-                                        this.getToken(this);
-                                        this.com.initCom();
-                                        var usrId = cc.sys.localStorage.getItem("usrId");
-                                        this_.com.initUserDataFromServer(usrId);
-                                    }, this_);
-                                }
+                                this_.m_btn_stare.node.on(cc.Node.EventType.TOUCH_END, function () {
+                                    //这里仅浏览器快速测试用
+                                    cc.sys.localStorage.setItem("usrId", 4020);
+                                    this.getToken(this);
+                                    this.com.initCom();
+                                    var usrId = cc.sys.localStorage.getItem("usrId");
+                                    this_.com.initUserDataFromServer(usrId);
+                                }, this_);
                             }
                         }
                     }
-                });
+                }
+            });
         }
-
     },
 
 

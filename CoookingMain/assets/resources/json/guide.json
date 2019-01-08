@@ -1,0 +1,222 @@
+[
+  {
+    "id": 4101,
+    "sysName": "制作汉堡1",
+    "position": "48,220",
+    "dialog": "店长,现在我们来制作顾客想要的汉堡吧",
+    "type": 1,
+    "isContinue": 1,
+    "charPos": "-300,-200",
+    "textPos": "200,-155"
+  },
+  {
+    "id": 4102,
+    "sysName": "制作汉堡2",
+    "position": "-143,-268",
+    "dialog": "先来烤肉",
+    "type": 2,
+    "isContinue": 1,
+    "charPos": "280,0",
+    "textPos": "480,0"
+  },
+  {
+    "id": 4103,
+    "sysName": "制作汉堡3",
+    "position": "50,-246",
+    "dialog": "准备好面包",
+    "type": 2,
+    "isContinue": 1,
+    "charPos": "-390,0",
+    "textPos": "-190,0"
+  },
+  {
+    "id": 4104,
+    "sysName": "制作汉堡4",
+    "position": "-98,-118",
+    "dialog": "等待肉烤好",
+    "type": 2,
+    "isContinue": 1,
+    "charPos": "220,-90",
+    "textPos": "420,-90"
+  },
+  {
+    "id": 4105,
+    "sysName": "制作汉堡5",
+    "position": "79,-93",
+    "dialog": "汉堡完成",
+    "type": 2,
+    "isContinue": 1,
+    "charPos": "-200,-136",
+    "textPos": "0,-136"
+  },
+  {
+    "id": 4106,
+    "sysName": "制作汉堡6",
+    "position": "0,1000",
+    "dialog": "干的漂亮！第一桶金到手！",
+    "type": 1,
+    "isContinue": 0,
+    "charPos": "-200,-1000",
+    "textPos": "200,-1000"
+  },
+  {
+    "id": 4201,
+    "sysName": "升级可乐机1",
+    "position": "0,0",
+    "dialog": "店长,顾客的需求是很苛刻的,这个时候就需要来升级设备了",
+    "type": 3,
+    "isContinue": 0,
+    "charPos": "0,0",
+    "textPos": "200,0"
+  },
+  {
+    "id": 4202,
+    "sysName": "升级可乐机2",
+    "position": "-714,234",
+    "dialog": "打开【升级】页面",
+    "type": 2,
+    "isContinue": 0,
+    "charPos": "0,-305",
+    "textPos": "250,-330"
+  },
+  {
+    "id": 4203,
+    "sysName": "升级可乐机3",
+    "position": "172,155",
+    "dialog": "找到饮料机",
+    "type": 2,
+    "isContinue": 0,
+    "charPos": "-395,0",
+    "textPos": "-195,0"
+  },
+  {
+    "id": 4204,
+    "sysName": "升级可乐机4",
+    "position": "0,-280",
+    "dialog": "升级！",
+    "type": 2,
+    "isContinue": 1,
+    "charPos": "-320,0",
+    "textPos": "-120,0"
+  },
+  {
+    "id": 4205,
+    "sysName": "升级可乐机5",
+    "position": "172,155",
+    "dialog": "哇塞,新的饮料机到了,生产饮料更快了,而且能同时倒2瓶饮料！",
+    "type": 1,
+    "isContinue": 0,
+    "charPos": "-150,0",
+    "textPos": "-172,-155"
+  },
+  {
+    "id": 4301,
+    "sysName": "页面介绍1",
+    "position": "0,1000",
+    "dialog": "店长,想不到你做的这么好,我来给你介绍下经营的小窍门吧",
+    "type": 1,
+    "isContinue": 1,
+    "charPos": "0,-910",
+    "textPos": "0,-1120"
+  },
+  {
+    "id": 4302,
+    "sysName": "页面介绍2",
+    "position": "-312,310",
+    "dialog": "这里是本月目标",
+    "type": 1,
+    "isContinue": 1,
+    "charPos": "145,-175",
+    "textPos": "345,-175"
+  },
+  {
+    "id": 4303,
+    "sysName": "页面介绍3",
+    "position": "-85,310",
+    "dialog": "金币,可以用来升级店铺哦",
+    "type": 1,
+    "isContinue": 1,
+    "charPos": "0,-295",
+    "textPos": "275,-295"
+  },
+  {
+    "id": 4304,
+    "sysName": "页面介绍4",
+    "position": "138,310",
+    "dialog": "钻石,可以用来开启新的店铺,建造你的商业帝国！",
+    "type": 1,
+    "isContinue": 1,
+    "charPos": "-209,-180",
+    "textPos": "-138,-360"
+  },
+  {
+    "id": 4305,
+    "sysName": "页面介绍5",
+    "position": "365,310",
+    "dialog": "得到的用户称赞,炫耀的资本！",
+    "type": 1,
+    "isContinue": 1,
+    "charPos": "-372,-180",
+    "textPos": "-365,-360"
+  },
+  {
+    "id": 4306,
+    "sysName": "页面介绍6",
+    "position": "0,1000",
+    "dialog": "干的漂亮！我等你开店开到土耳其,然后又开到东京和巴黎",
+    "type": 1,
+    "isContinue": 0,
+    "charPos": "0,-910",
+    "textPos": "0,-1120"
+  },
+  {
+    "id": 4401,
+    "sysName": "升级提示",
+    "position": "0,0",
+    "dialog": "试试继续升级食物吧！",
+    "type": 3,
+    "isContinue": 0,
+    "charPos": "0,0",
+    "textPos": "200,0"
+  },
+  {
+    "id": 4501,
+    "sysName": "下个月提示",
+    "position": "0,0",
+    "dialog": "继续经营小店吧！",
+    "type": 3,
+    "isContinue": 0,
+    "charPos": "0,0",
+    "textPos": "200,0"
+  },
+  {
+    "id": 4601,
+    "sysName": "生菜介绍1",
+    "position": "0,1000",
+    "dialog": "店长，荤素搭配才能健康哦~",
+    "type": 1,
+    "isContinue": 1,
+    "charPos": "-200,-1000",
+    "textPos": "200,-1000"
+  },
+  {
+    "id": 4602,
+    "sysName": "生菜介绍2",
+    "position": "0,1000",
+    "dialog": "   ",
+    "type": 1,
+    "isContinue": 1,
+    "charPos": "-200,-1000",
+    "textPos": "200,-1000"
+  },
+  {
+    "id": 4603,
+    "sysName": "生菜介绍3",
+    "position": "0,1000",
+    "dialog": "快去试试在汉堡中加入生菜吧！",
+    "type": 1,
+    "isContinue": 0,
+    "charPos": "-200,-1000",
+    "textPos": "200,-1000"
+  }
+]

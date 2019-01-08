@@ -7,7 +7,7 @@ cc.Class({
         spinBtn: cc.Button,
         m_bgm: {
             default: null,
-            url: cc.AudioClip
+            type: cc.AudioClip
         }
     },
 

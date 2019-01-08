@@ -1,0 +1,180 @@
+[
+  {
+    "id": 20101,
+    "name": "温暖",
+    "des": "食物更快煮熟",
+    "eventType": 1,
+    "eventPer": 100,
+    "eventNum": -3,
+    "pic": "xinshijian_01"
+  },
+  {
+    "id": 20102,
+    "name": "酷暑",
+    "des": "容易烧糊食物",
+    "eventType": 2,
+    "eventPer": 100,
+    "eventNum": -5,
+    "pic": "xinshijian_hong02"
+  },
+  {
+    "id": 20103,
+    "name": "凉爽",
+    "des": "不容易烧糊食物",
+    "eventType": 2,
+    "eventPer": 100,
+    "eventNum": 10,
+    "pic": "xinshijian_02"
+  },
+  {
+    "id": 20104,
+    "name": "严寒",
+    "des": "食物难以煮熟",
+    "eventType": 1,
+    "eventPer": 100,
+    "eventNum": 3,
+    "pic": "xinshijian_hong01"
+  },
+  {
+    "id": 20201,
+    "name": "晴天",
+    "des": "顾客不再会烦躁",
+    "eventType": 3,
+    "eventPer": 100,
+    "eventNum": -0.5,
+    "pic": "xinshijian_03"
+  },
+  {
+    "id": 20202,
+    "name": "雨",
+    "des": "顾客更容易进入烦躁状态",
+    "eventType": 3,
+    "eventPer": 100,
+    "eventNum": 0.2,
+    "pic": "xinshijian_hong03"
+  },
+  {
+    "id": 20203,
+    "name": "雪",
+    "des": "小费翻倍",
+    "eventType": 4,
+    "eventPer": 100,
+    "eventNum": 1,
+    "pic": "xinshijian_04"
+  },
+  {
+    "id": 20204,
+    "name": "雾",
+    "des": "顾客等待时间大幅减少",
+    "eventType": 5,
+    "eventPer": 100,
+    "eventNum": -3,
+    "pic": "xinshijian_hong05"
+  },
+  {
+    "id": 20205,
+    "name": "霾",
+    "des": "顾客好评时间大幅减少",
+    "eventType": 3,
+    "eventPer": 100,
+    "eventNum": -3,
+    "pic": "xinshijian_hong03"
+  },
+  {
+    "id": 20301,
+    "name": "春节",
+    "des": "得到顾客好评时，有概率获得钻石",
+    "eventType": 6,
+    "eventPer": 50,
+    "eventNum": 1,
+    "pic": "xinshijian_06"
+  },
+  {
+    "id": 20302,
+    "name": "元宵节",
+    "des": "得到顾客好评时，必然得到小费",
+    "eventType": 7,
+    "eventPer": 100,
+    "eventNum": 3,
+    "pic": "xinshijian_07"
+  },
+  {
+    "id": 20303,
+    "name": "妇女节",
+    "des": "得到女性顾客好评时，有概率获得钻石",
+    "eventType": 8,
+    "eventPer": 75,
+    "eventNum": 1,
+    "pic": "xinshijian_08"
+  },
+  {
+    "id": 20304,
+    "name": "劳动节",
+    "des": "顾客等待时间变长",
+    "eventType": 5,
+    "eventPer": 100,
+    "eventNum": 10,
+    "pic": "xinshijian_05"
+  },
+  {
+    "id": 20305,
+    "name": "儿童节",
+    "des": "得到儿童顾客好评时，有概率获得钻石",
+    "eventType": 9,
+    "eventPer": 75,
+    "eventNum": 1,
+    "pic": "xinshijian_08"
+  },
+  {
+    "id": 20306,
+    "name": "中秋节",
+    "des": "得到顾客好评时，得到双倍好评",
+    "eventType": 10,
+    "eventPer": 100,
+    "pic": "xinshijian_10"
+  },
+  {
+    "id": 20401,
+    "name": "素食主义",
+    "des": "每提供5次食物，额外获得好评",
+    "eventType": 11,
+    "eventPer": 100,
+    "eventNum": 5,
+    "pic": "xinshijian_11"
+  },
+  {
+    "id": 20402,
+    "name": "有气饮料",
+    "des": "每次提供饮料时，有概率获得额外好评",
+    "eventType": 12,
+    "eventPer": 50,
+    "pic": "xinshijian_12"
+  },
+  {
+    "id": 20403,
+    "name": "花香美食",
+    "des": "每提供10次食物，额外获得1位顾客",
+    "eventType": 13,
+    "eventPer": 100,
+    "eventNum": 10,
+    "pic": "xinshijian_13"
+  },
+  {
+    "id": 20404,
+    "name": "超级粉末",
+    "des": "每次提供非饮料时，获得额外金币",
+    "eventType": 14,
+    "eventPer": 100,
+    "eventNum": 5,
+    "pic": "xinshijian_14"
+  },
+  {
+    "id": 20405,
+    "name": "高科技素食",
+    "des": "在未获得好评时，也有可能获得小费",
+    "eventType": 15,
+    "eventPer": 100,
+    "eventNum": 3,
+    "pic": "xinshijian_15"
+  }
+]
