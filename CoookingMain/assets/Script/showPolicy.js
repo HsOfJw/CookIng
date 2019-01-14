@@ -2,8 +2,8 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        m_name: cc.RichText,
-        m_des: cc.RichText,
+        m_name: cc.Label,
+        m_des: cc.Label,
         m_sp: cc.Sprite,
     },
 
@@ -37,12 +37,14 @@ cc.Class({
             if (len > 0) str_new += '\r\n';
         }
 
-        label.string = "<b>" + str_new + "</b>";
+        // label.string = "<b>" + str_new + "</b>";
+        label.string =  str_new ;
     },
 
     init: function(evtInfo){
-        this.m_name.string = "<b>" + evtInfo.name + "</b>",
-        
+        // this.m_name.string = "<b>" + evtInfo.name + "</b>",
+        this.m_name.string =evtInfo.name ;
+
         //this.m_des.string = "<b>" + evtInfo.des + "</b>",
         this.showDesc(this.m_des, evtInfo.des);
 

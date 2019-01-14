@@ -2,12 +2,12 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        m_name: cc.RichText,
-        m_des: cc.RichText,
+        m_name: cc.Label,
+        m_des: cc.Label,
         m_sp: cc.Sprite,
     },
 
-    onLoad () {
+    onLoad() {
         this.com = require('common');
         this.httpUtils = require("httpUtils");
         this.node_anim = this.node.runAction(cc.sequence(
@@ -21,36 +21,38 @@ cc.Class({
         btnReturn.getComponent(cc.Sprite).spriteFrame = new cc.SpriteFrame(this.com.res_loaded["png_xinshijian_cha"]);
     },
 
-    start () {
+    start() {
 
     },
 
-    showDesc: function(label, str){
+    showDesc: function (label, str) {
         var line_count = 8;
         var str_new = "";
         var len = str.length;
         var start = 0;
-        while (len > 0){
+        while (len > 0) {
             str_new += str.substr(start, line_count);
             len -= line_count;
             start += line_count;
             if (len > 0) str_new += '\r\n';
         }
 
-        label.string = "<b>" + str_new + "</b>";
+        // label.string = "<b>" + str_new + "</b>";
+        label.string = str_new;
     },
 
-    init: function(evtInfo){
-        this.m_name.string = "<b>" + evtInfo.name + "</b>",
-        
+    init: function (evtInfo) {
+        // this.m_name.string = "<b>" + evtInfo.name + "</b>",
+        this.m_name.string = evtInfo.name;
+
         //this.m_des.string = "<b>" + evtInfo.des + "</b>",
         this.showDesc(this.m_des, evtInfo.des);
 
         this.m_sp.spriteFrame = new cc.SpriteFrame(this.com.res_loaded["png_" + evtInfo.pic]);
     },
 
-    btnClose: function(event, coustEvent) {
-        if(this.node_anim) this.node.stopAction(this.node_anim);
+    btnClose: function (event, coustEvent) {
+        if (this.node_anim) this.node.stopAction(this.node_anim);
         this.node.dispatchEvent(new cc.Event.EventCustom("closeEvtInfo", true));
 
         this.node.removeFromParent(true);

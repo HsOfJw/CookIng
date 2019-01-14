@@ -3,10 +3,10 @@ cc.Class({
 
     properties: {
         spQuality: cc.Sprite,
-        lbName: cc.RichText,
-        lbDes: cc.RichText,
+        lbName: cc.Label,//
+        lbDes: cc.Label,
         spAward: cc.Sprite,
-        lbAward: cc.RichText,
+        lbAward: cc.Label,
     },
 
     onLoad () {
@@ -25,8 +25,10 @@ cc.Class({
             this.com.loadTexture(this.spQuality.node, [], "png_jiangbei_jinpai");
         }
 
-        this.lbName.string = "<b>" + itemInfo.name + "</b>";
-        this.lbDes.string = "<b>" + itemInfo.des + "</b>";
+        //this.lbName.string = "<b>" + itemInfo.name + "</b>";
+        // this.lbDes.string = "<b>" + itemInfo.des + "</b>";
+        this.lbName.string =itemInfo.name;
+        this.lbDes.string =itemInfo.des ;
 
         var hasGet = false;
         for (var key in this.com.saveData.achiveHistory){
@@ -49,7 +51,8 @@ cc.Class({
                 this.com.loadTexture(this.spAward.node, [], "png_jiangbei_binqilin");
             }
 
-            this.lbAward.string = "<b>" + awardNum + "</b>";
+            // this.lbAward.string = "<b>" + awardNum + "</b>";
+            this.lbAward.string = awardNum ;
 
             var btnGet = this.com.loadTexture(this.node, ["btnGet"], "png_jiangbei_lingqu");
             var curNum = this.com.saveData.achive[itemInfo.type];

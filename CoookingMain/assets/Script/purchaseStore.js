@@ -3,8 +3,8 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        Rich_diamond: cc.RichText,
-        Rich_gold: cc.RichText,
+        Rich_diamond: cc.Label,
+        Rich_gold: cc.Label,
         dlg_bg: cc.Node,
     },
 
@@ -24,8 +24,10 @@ cc.Class({
         goumai_anniuda.getComponent(cc.Sprite).spriteFrame = new cc.SpriteFrame(this.com.res_loaded["png_goumai_anniuda"]);
 
         this.spend = this.com.getPurchase();
-        this.Rich_diamond.string = "<color=#9C651F>X" + this.spend[0] +"</c>";
-        this.Rich_gold.string = "<color=#9C651F>X" + this.spend[1] +"</c>";
+        // this.Rich_diamond.string = "<color=#9C651F>X" + this.spend[0] +"</c>";
+        // this.Rich_gold.string = "<color=#9C651F>X" + this.spend[1] +"</c>";
+        this.Rich_diamond.string = "X" + this.spend[0] ;
+        this.Rich_gold.string = "X" + this.spend[1];
     },
 
     btnClose () {

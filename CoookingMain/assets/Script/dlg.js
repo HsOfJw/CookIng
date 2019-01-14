@@ -33,11 +33,13 @@ cc.Class({
             des = item.des;
         }
         var name_left = this.node.getChildByName("name");
-        name_left.getComponent(cc.RichText).string = "<color=#9C651F><b>" + item.name + "</b></color>";
+        // name_left.getComponent(cc.RichText).string = "<color=#9C651F><b>" + item.name + "</b></color>";
+        name_left.getComponent(cc.Label).string =  item.name ;
         var spItem_left = this.node.getChildByName("spItem");
         spItem_left.getComponent(cc.Sprite).spriteFrame = new cc.SpriteFrame(this.com.res_loaded["png_" + itemId + "_s"]);
         var desc_left = this.node.getChildByName("desc");
-        this.showDesc(desc_left.getComponent(cc.RichText), des);
+        // this.showDesc(desc_left.getComponent(cc.RichText), des);
+        this.showDesc(desc_left.getComponent(cc.Label), des);
     },
 
     showDesc: function(label, str){
@@ -52,7 +54,8 @@ cc.Class({
             if (len > 0) str_new += '\r\n';
         }
 
-        label.string = "<color=#9C651F><b>" + str_new + "</b></color>";
+        // label.string = "<color=#9C651F><b>" + str_new + "</b></color>";
+        label.string = str_new;
     },
 
     btnClose: function(event, coustEvent) {

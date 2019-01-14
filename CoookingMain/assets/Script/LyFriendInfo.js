@@ -3,9 +3,9 @@ cc.Class({
 
     properties: {
         avatarImgSprite: cc.Sprite,
-        nickLabel: cc.RichText,
-        desLabel: cc.RichText,
-        numLabel: cc.RichText,
+        nickLabel: cc.Label,
+        desLabel: cc.Label,
+        numLabel: cc.Label,
         sexSprite: cc.Sprite,
     },
 
@@ -36,7 +36,8 @@ cc.Class({
         var nickName = "";
         if (userInfo.nickName && userInfo.nickName != "null")
             nickName = userInfo.nickName
-        this.nickLabel.string = "<b>" + nickName + "</b>";
+        // this.nickLabel.string = "<b>" + nickName + "</b>";
+        this.nickLabel.string =nickName;
 
         this.desLabel.string = "";
         if (userInfo.des && userInfo.des != "null")
@@ -45,7 +46,8 @@ cc.Class({
         var fans = 0;
         if (userInfo.fans && userInfo.fans != "null")
             fans = userInfo.fans;
-        this.numLabel.string = "<b>" + fans + "</b>";
+        // this.numLabel.string = "<b>" + fans + "</b>";
+        this.numLabel.string =fans;
 
         if (userInfo.sex){
             this.sexSprite.spriteFrame = new cc.SpriteFrame(this.com.res_loaded["png_shejiao_nv"]);

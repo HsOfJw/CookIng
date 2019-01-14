@@ -2,7 +2,7 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        lbTimes: cc.RichText
+        lbTimes: cc.Label
     },
 
     onLoad () {
@@ -46,13 +46,13 @@ cc.Class({
             if (jsonD["errcode"] === 0){
                 this_._times = jsonD.data;
                 if (jsonD.data < 3){
-                    this_.lbTimes.string = "<b>" + jsonD.data + "/3</b>"
+                    this_.lbTimes.string = jsonD.data + "/3"
                 } else {
-                    this_.lbTimes.string = "<b>3/3</b>";
+                    this_.lbTimes.string = "3/3";
                 }
             } else {
                 this_._times = 3;
-                this_.lbTimes.string = "<b>3/3</b>";
+                this_.lbTimes.string = "3/3";
             }
 
             this_.getVisit();

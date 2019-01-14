@@ -20,14 +20,14 @@ cc.Class({
         m_policy: cc.Prefab,
         m_loginAward: cc.Prefab,
         m_dlgGiveGold: cc.Prefab,
-        m_lbMonth: cc.RichText,
-        m_lbMonthTargetV: cc.RichText,
+        m_lbMonth: cc.Label,//cc.RichText
+        m_lbMonthTargetV: cc.Label,//
         m_pgMonthTarget: cc.ProgressBar,
         m_ndMonthEvt: cc.Node,
         m_lbGold: cc.Label,
         m_lbDiamond: cc.Label,
         m_lbPraise: cc.Label,
-        m_lbGift: cc.RichText,
+        m_lbGift: cc.Label,//
         m_ndRecycle: cc.Node,
         m_reciveGoldAudio: {
             default: null,
@@ -390,7 +390,8 @@ cc.Class({
 
         this.m_lbDiamond.string = this.com.saveData.diamond;
         this.m_lbPraise.string = this.com.saveData.praise;
-        this.m_lbGift.string = "<outline color=#ffffff width=4>" + this.com.saveData.gift + "</outline>";
+        // this.m_lbGift.string = "<outline color=#ffffff width=4>" + this.com.saveData.gift + "</outline>";
+        this.m_lbGift.string = this.com.saveData.gift;
 
         //this.initMonthTarget();
         this.loginShowActive();
@@ -520,7 +521,9 @@ cc.Class({
 
         this._curMonthTarget = 0;
         this._leavePeople = 0;
-        this.m_lbMonthTargetV.string = "<outline color=#ffffff width=4>" + this._curMonthTarget + "/" + this._monthTarget.num + "</outline>";
+        //this.m_lbMonthTargetV.string = "<outline color=#ffffff width=4>" + this._curMonthTarget + "/" + this._monthTarget.num + "</outline>";
+        this.m_lbMonthTargetV.string = this._curMonthTarget + "/" + this._monthTarget.num;
+
         this.m_pgMonthTarget.progress = 1.0;
 
         var monthTargetInfo = this.com.getMTarget(this._monthTarget.ID);
@@ -906,7 +909,8 @@ cc.Class({
                     self.m_peopleCurFlu++;
 
                     if (self._monthTarget.ID == 0) {
-                        self.m_lbMonthTargetV.string = "<outline color=#ffffff width=4>" + self._curMonthTarget + "/" + self._monthTarget.num + "</outline>";
+                        //self.m_lbMonthTargetV.string = "<outline color=#ffffff width=4>" + self._curMonthTarget + "/" + self._monthTarget.num + "</outline>";
+                        self.m_lbMonthTargetV.string = self._curMonthTarget + "/" + self._monthTarget.num;
                         self.m_pgMonthTarget.progress = 1.0 - self._curMonthTarget / self._monthTarget.num;
                     }
 
@@ -1000,8 +1004,9 @@ cc.Class({
                         this._continueTimes++;
 
                         var tips = this.node.getChildByName("tips_bg");
-                        var lbTip = tips.getChildByName("tips").getComponent(cc.RichText);
-                        lbTip.string = "<color=#ffe050><b>" + (this._continueTimes + 1).toString() + "连上菜</b></color>";
+                        var lbTip = tips.getChildByName("tips").getComponent(cc.Label);
+                        // lbTip.string = "<color=#ffe050><b>" + (this._continueTimes + 1).toString() + "连上菜</b></color>";
+                        lbTip.string = (this._continueTimes + 1).toString() + "连上菜";
                         tips.x = 0;
                         tips.opacity = 0;
                         tips.runAction(cc.sequence(
@@ -1260,8 +1265,9 @@ cc.Class({
     givePraise: function (customerId, num) {
         var spPraise = cc.instantiate(this.node.getChildByName("praise1"));
 
-        var numRt = spPraise.getChildByName("num").getComponent(cc.RichText);
-        numRt.string = "<outline color=#e08f4c width=2>好评+" + num + "</outline>";
+        var numRt = spPraise.getChildByName("num").getComponent(cc.Label);
+        //numRt.string = "<outline color=#e08f4c width=2>好评+" + num + "</outline>";
+        numRt.string = "好评" + num;
 
         var lyBuyers = this.node.getChildByName("buyers");
         var lyAnimate = this.node.getChildByName("animate");
@@ -1296,8 +1302,9 @@ cc.Class({
     givePeople: function (customerId, num) {
         var spPraise = cc.instantiate(this.node.getChildByName("people1"));
 
-        var numRt = spPraise.getChildByName("num").getComponent(cc.RichText);
-        numRt.string = "<outline color=#e08f4c width=2>顾客+" + num + "</outline>";
+        var numRt = spPraise.getChildByName("num").getComponent(cc.Label);
+        //numRt.string = "<outline color=#e08f4c width=2>顾客+" + num + "</outline>";
+        numRt.string = "顾客" + num;
 
         var lyBuyers = this.node.getChildByName("buyers");
         var lyAnimate = this.node.getChildByName("animate");
@@ -1322,7 +1329,8 @@ cc.Class({
 
                 cc.audioEngine.playEffect(self.m_reciveGoldAudio, false);
 
-                self.m_lbMonthTargetV.string = "<outline color=#ffffff width=4>" + self._curMonthTarget + "/" + self._monthTarget.num + "</outline>";
+                //self.m_lbMonthTargetV.string = "<outline color=#ffffff width=4>" + self._curMonthTarget + "/" + self._monthTarget.num + "</outline>";
+                self.m_lbMonthTargetV.string = self._curMonthTarget + "/" + self._monthTarget.num;
 
                 target.removeFromParent(true);
             })
@@ -1405,7 +1413,8 @@ cc.Class({
 
     reachGoal: function (val) {
         this._curMonthTarget += val;
-        this.m_lbMonthTargetV.string = "<outline color=#ffffff width=4>" + this._curMonthTarget + "/" + this._monthTarget.num + "</outline>";
+        // this.m_lbMonthTargetV.string = "<outline color=#ffffff width=4>" + this._curMonthTarget + "/" + this._monthTarget.num + "</outline>";
+        this.m_lbMonthTargetV.string = this._curMonthTarget + "/" + this._monthTarget.num;
         this.m_pgMonthTarget.progress = 1.0 - this._curMonthTarget / this._monthTarget.num;
         if (this._curMonthTarget == this._monthTarget.num) {
             this._monthOver = true;
@@ -1627,7 +1636,8 @@ cc.Class({
             this.com.saveData.gift--;
             this.com.setComData("gift", this.com.saveData.gift);
 
-            this.m_lbGift.string = "<outline color=#ffffff width=4>" + this.com.saveData.gift + "</outline>";
+            // this.m_lbGift.string = "<outline color=#ffffff width=4>" + this.com.saveData.gift + "</outline>";
+            this.m_lbGift.string = this.com.saveData.gift;
         }
     },
 
@@ -1755,7 +1765,7 @@ cc.Class({
     BtnTask: function (event, coustEvent) {
         var taskInfo = this.com.getTask();
 
-        var taskDes = this.node.getChildByName("close").getChildByName("richtext").getComponent(cc.RichText);
+        var taskDes = this.node.getChildByName("close").getChildByName("richtext").getComponent(cc.Label);//cc.RichText)
 
         for (var i = 0; i < taskInfo.length; i++) {
             var num = taskInfo[i].num;
@@ -1902,8 +1912,9 @@ cc.Class({
                                         this_.initMonthEvt();
                                     }
                                     var tips = this_.node.getChildByName("tips_bg");
-                                    var lbTip = tips.getChildByName("tips").getComponent(cc.RichText);
-                                    lbTip.string = "<color=#ffe050><b>一大波顾客即将到来！</b></color>";
+                                    var lbTip = tips.getChildByName("tips").getComponent(cc.Label);
+                                    // lbTip.string = "<color=#ffe050><b>一大波顾客即将到来！</b></color>";
+                                    lbTip.string = "一大波顾客即将到来！";
                                     tips.x = 0;
                                     tips.opacity = 0;
                                     tips.runAction(cc.sequence(
@@ -1963,8 +1974,9 @@ cc.Class({
                 ext += "（0/" + taskInfo[0].num + "）";
             }
 
-            var taskDes = this.node.getChildByName("close").getChildByName("richtext").getComponent(cc.RichText);
-            taskDes.string = "<b>" + ext + "</b>";
+            var taskDes = this.node.getChildByName("close").getChildByName("richtext").getComponent(cc.Label);
+            // taskDes.string = "<b>" + ext + "</b>";
+            taskDes.string = ext;
         } else {
             this.node.getChildByName("close").getChildByName("qianwang1").active = false;
             this.node.getChildByName("close").getChildByName("richtext").active = false;
@@ -2031,8 +2043,9 @@ cc.Class({
                     this._taskInfo[index] = taskInfo[index].num;
 
                     if (taskInfo[index + 1]) {
-                        var taskDes = this.node.getChildByName("close").getChildByName("richtext").getComponent(cc.RichText);
-                        taskDes.string = "<b>" + taskInfo[index + 1].name + "</b>";
+                        var taskDes = this.node.getChildByName("close").getChildByName("richtext").getComponent(cc.Label);
+                        // taskDes.string = "<b>" + taskInfo[index + 1].name + "</b>";
+                        taskDes.string = taskInfo[index + 1].name;
                         if (taskInfo[index + 1].type == 5) {
                             this.guideNextMonth();
                         }
@@ -2040,8 +2053,9 @@ cc.Class({
                 } else {
                     var ext = taskInfo[index].name + "（" + this._taskInfo[index] + "/" + taskInfo[index].num + "）";
 
-                    var taskDes = this.node.getChildByName("close").getChildByName("richtext").getComponent(cc.RichText);
-                    taskDes.string = "<b>" + ext + "</b>";
+                    var taskDes = this.node.getChildByName("close").getChildByName("richtext").getComponent(cc.Label);
+                    // taskDes.string = "<b>" + ext + "</b>";
+                    taskDes.string = ext;
                 }
             }
         }
@@ -2137,7 +2151,8 @@ cc.Class({
         }
         this._curMonthTarget = 0;
         this._leavePeople = 0;
-        this.m_lbMonthTargetV.string = "<outline color=#ffffff width=4>" + this._curMonthTarget + "/" + this._monthTarget.num + "</outline>";
+        // this.m_lbMonthTargetV.string = "<outline color=#ffffff width=4>" + this._curMonthTarget + "/" + this._monthTarget.num + "</outline>";
+        this.m_lbMonthTargetV.string = this._curMonthTarget + "/" + this._monthTarget.num;
         this.m_pgMonthTarget.progress = 1.0;
 
         this.node.getChildByName("monthTarget").x = -384;
@@ -2161,7 +2176,8 @@ cc.Class({
     },
 
     upGift: function (event) {
-        this.m_lbGift.string = "<outline color=#ffffff width=4>" + this.com.saveData.gift + "</outline>";
+        // this.m_lbGift.string = "<outline color=#ffffff width=4>" + this.com.saveData.gift + "</outline>";
+        this.m_lbGift.string = this.com.saveData.gift;
     },
 
     closeLoginAward: function (event) {

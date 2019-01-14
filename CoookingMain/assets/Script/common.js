@@ -39,7 +39,7 @@ function initCom() {
     this.cfgNewScore = JsonFileCfg.file.newScore.data.data;
     this.cfgTask = JsonFileCfg.file.task.data.data;
 
-    console.log(this.cfgParam);
+    console.log("this.cfgParam=", this.cfgParam);
 
     this.saveData.gold = this.getParam(1008).param;
 
@@ -103,7 +103,7 @@ function initUserDataFromServer(userId) {
             } else {
                 if (self.saveData.curStore == 1) {
                     console.log("3333333333333333333333333333");
-                    cc.director.loadScene('GameUI');
+                    cc.director.loadScene('GameUI');//test   GameUI
                 } else if (self.saveData.curStore == 2) {
                     console.log("444444444444444444444444444444");
                     cc.director.loadScene('CookingUI');
@@ -115,6 +115,7 @@ function initUserDataFromServer(userId) {
         } else {
             console.log("555555555555555555555555");
             if (userId == usrId) {
+                console.log("userId == usrId");
                 var month = cc.sys.localStorage.getItem("month");
                 if (month) self.saveData.month = Number(month);
                 var gold = cc.sys.localStorage.getItem("gold");
@@ -151,6 +152,7 @@ function initUserDataFromServer(userId) {
                     if (self.saveData.curStore == 1) {
                         console.log("777777777777777777777777777777777777");
                         cc.director.loadScene('GameUI');
+                        // cc.director.loadScene('test')
                     } else if (self.saveData.curStore == 2) {
                         console.log("888888888888888888888888888888");
                         cc.director.loadScene('CookingUI');
@@ -161,6 +163,7 @@ function initUserDataFromServer(userId) {
             }
         }
     }, token);
+    console.log("common 请求发送成功", "url=", url, "token", token);
 }
 
 function saveUserData() {

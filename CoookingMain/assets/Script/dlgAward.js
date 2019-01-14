@@ -2,7 +2,7 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        m_lbName: cc.RichText,
+        m_lbName:cc.Label,//cc.RichText
     },
 
     onLoad () {
@@ -26,7 +26,8 @@ cc.Class({
             this.com.loadTexture(this.node, ["spItem"], "png_jiangbei_binqilin");
         }
 
-        this.m_lbName.string = "<color=#9C651F><b>X" + name + "</b></color>";
+        // this.m_lbName.string = "<color=#9C651F><b>X" + name + "</b></color>";
+        this.m_lbName.string = "X" + name;
     },
 
     showBanner: function(){

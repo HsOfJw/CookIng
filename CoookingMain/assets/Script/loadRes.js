@@ -474,6 +474,7 @@ cc.Class({
                                     this.getToken(this);
                                     this.com.initCom();
                                     var usrId = cc.sys.localStorage.getItem("usrId");
+                                    console.log("usrId", usrId);
                                     this_.com.initUserDataFromServer(usrId);
                                 }, this_);
                             }

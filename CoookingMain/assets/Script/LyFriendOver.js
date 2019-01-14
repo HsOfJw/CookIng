@@ -2,9 +2,9 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        lbGold: cc.RichText,
-        lbDiamond: cc.RichText,
-        lbPraise: cc.RichText,
+        lbGold: cc.Label,
+        lbDiamond: cc.Label,
+        lbPraise: cc.Label,
         m_GetRewardAudio: {
             default: null,
             type: cc.AudioClip

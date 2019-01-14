@@ -7,7 +7,7 @@ cc.Class({
             default: null, 
             type: cc.Node
         },
-        lbText: cc.RichText,
+        lbText: cc.Label,
     },
 
     onLoad() {
@@ -36,7 +36,8 @@ cc.Class({
         var y = Number(guideInfo.charPos.substring(pos + 1, guideInfo.charPos.length));
         char.setPosition(x, y);
 
-        this.lbText.string = "<b>" + guideInfo.dialog + "</b>";
+        // this.lbText.string = "<b>" + guideInfo.dialog + "</b>";
+        this.lbText.string =guideInfo.dialog ;
         pos = guideInfo.textPos.indexOf(',');
         x = Number(guideInfo.textPos.substring(0, pos));
         y = Number(guideInfo.textPos.substring(pos + 1, guideInfo.textPos.length));

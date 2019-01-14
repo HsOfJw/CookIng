@@ -3,9 +3,9 @@ cc.Class({
 
     properties: {
         avatarImgSprite: cc.Sprite,
-        nickLabel: cc.RichText,
-        desLabel: cc.RichText,
-        numLabel: cc.RichText,
+        nickLabel: cc.Label,
+        desLabel: cc.Label,
+        numLabel: cc.Label,
     },
 
     onLoad () {
@@ -23,12 +23,14 @@ cc.Class({
         var nickName = "";
         if (itemInfo.name && itemInfo.name != "null")
             nickName = itemInfo.name
-        this.nickLabel.string = "<b>" + nickName + "</b>";
+        // this.nickLabel.string = "<b>" + nickName + "</b>";
+        this.nickLabel.string =  nickName ;
 
         var des = "";
         if (itemInfo.des && itemInfo.des != "null")
             des = itemInfo.des;
-        this.desLabel.string = "<b>" + des + "</b>";
+        // this.desLabel.string = "<b>" + des + "</b>";
+        this.desLabel.string =  des;
 
         this.createImage(this.com.serverUrl_res + itemInfo.path);
 
@@ -56,7 +58,8 @@ cc.Class({
                 self.node.getChildByName("lbAward").active = false;
             } else {
                 lingqu.getComponent(cc.Sprite).spriteFrame = new cc.SpriteFrame(self.com.res_loaded["png_huodong_gengduofui_lingqu"]);
-                self.numLabel.string = "<b>" + self.com.getParam(1011).param + "</b>";
+                // self.numLabel.string = "<b>" + self.com.getParam(1011).param + "</b>";
+                self.numLabel.string =self.com.getParam(1011).param ;
             }
         }, token);
     },
@@ -84,7 +87,8 @@ cc.Class({
                 self.node.dispatchEvent(new cc.Event.EventCustom("upDiamond", true));
             } else {
                 lingqu.getComponent(cc.Sprite).spriteFrame = new cc.SpriteFrame(self.com.res_loaded["png_huodong_gengduofui_lingqu"]);
-                self.numLabel.string = "<b>" + self.com.getParam(1011).param + "</b>";
+                // self.numLabel.string = "<b>" + self.com.getParam(1011).param + "</b>";
+                self.numLabel.string = self.com.getParam(1011).param ;
             }
         }, token);
     },

@@ -4,15 +4,15 @@ cc.Class({
     properties: {
         friend: cc.Prefab,
         avatarImgSprite: cc.Sprite,
-        nickLabel: cc.RichText,
+        nickLabel: cc.Label,//
         desLabel: cc.EditBox,
-        numLabel: cc.RichText,
+        numLabel: cc.Label,
         sexSprite: cc.Sprite,
-        mineIDLabel: cc.RichText,
+        mineIDLabel: cc.Label,
         friendIDLabel: cc.EditBox,
     },
 
-    onLoad () {
+    onLoad() {
         this.com = require('common');
         this.httpUtils = require("httpUtils");
         this.popup = require('popup');
@@ -23,7 +23,7 @@ cc.Class({
         ));
         var ditu = this.node.getChildByName("ditu");
         ditu.getComponent(cc.Sprite).spriteFrame = new cc.SpriteFrame(this.com.res_loaded["png_shejiao_chazhao_ditu"]);
-        
+
         var fanhui = this.node.getChildByName("fanhui");
         fanhui.getComponent(cc.Sprite).spriteFrame = new cc.SpriteFrame(this.com.res_loaded["png_shejiao_chazhao_X"]);
 
@@ -37,16 +37,17 @@ cc.Class({
         mask.getComponent(cc.Mask).spriteFrame = new cc.SpriteFrame(this.com.res_loaded["png_shejiao_chazhao_touxiang"]);
     },
 
-    start () {
+    start() {
 
     },
 
-    init: function(userInfo){
+    init: function (userInfo) {
         console.log(userInfo)
         var nickName = "";
         if (userInfo.nickName && userInfo.nickName != "null")
             nickName = userInfo.nickName
-        this.nickLabel.string = "<b>" + nickName + "</b>";
+        // this.nickLabel.string = "<b>" + nickName + "</b>";
+        this.nickLabel.string = nickName;
 
         if (userInfo.des && userInfo.des != "null")
             this.desLabel.string = userInfo.des;
@@ -54,11 +55,13 @@ cc.Class({
         var fans = 0;
         if (userInfo.fans && userInfo.fans != "null")
             fans = userInfo.fans;
-        this.numLabel.string = "<b>" + fans + "</b>";
+        // this.numLabel.string = "<b>" + fans + "</b>";
+        this.numLabel.string = fans;
 
-        this.mineIDLabel.string = "<b>" + userInfo.id + "</b>";
+        // this.mineIDLabel.string = "<b>" + userInfo.id + "</b>";
+        this.mineIDLabel.string = userInfo.id;
 
-        if (userInfo.sex){
+        if (userInfo.sex) {
             this.sexSprite.spriteFrame = new cc.SpriteFrame(this.com.res_loaded["png_shejiao_nv"]);
         } else {
             this.sexSprite.spriteFrame = new cc.SpriteFrame(this.com.res_loaded["png_shejiao_nan"]);
@@ -67,7 +70,7 @@ cc.Class({
         this.createImage(userInfo.avatarUrl);
     },
 
-    createImage: function(avatarUrl) {
+    createImage: function (avatarUrl) {
         if (CC_WECHATGAME) {
             try {
                 let image = wx.createImage();
@@ -83,7 +86,7 @@ cc.Class({
                     }
                 };
                 image.src = avatarUrl;
-            }catch (e) {
+            } catch (e) {
                 console.log(e);
                 this.avatarImgSprite.node.active = false;
             }
@@ -96,13 +99,13 @@ cc.Class({
         }
     },
 
-    btnFind: function(event, coustEvent) {
+    btnFind: function (event, coustEvent) {
         var usrId = cc.sys.localStorage.getItem("usrId");
-        if (this.friendIDLabel.string == ""){
+        if (this.friendIDLabel.string == "") {
             this.popup.tip(this.node, "输入的游戏ID不能为空");
             return;
         }
-        if (usrId == this.friendIDLabel.string){
+        if (usrId == this.friendIDLabel.string) {
             this.popup.tip(this.node, "不能输入自己的游戏ID");
             return;
         }
@@ -115,12 +118,12 @@ cc.Class({
         };
         var token = cc.sys.localStorage.getItem("Token");
         var url = this.com.serverUrl + "/user/findUser";
-        this.httpUtils._instance.httpPost(url, JSON.stringify(params), function(data){
+        this.httpUtils._instance.httpPost(url, JSON.stringify(params), function (data) {
             console.log(data);
 
-            var jsonD = JSON.parse(data);
+            var jsonD = JSON.parse(data);
 
-            if (jsonD["errcode"] === 0){
+            if (jsonD["errcode"] === 0) {
                 var find = cc.instantiate(this_.friend);
                 find.parent = this_.node;
                 find.getComponent("LyFriendInfo").init(jsonD.data.data, jsonD.data.isFollow);
@@ -131,10 +134,10 @@ cc.Class({
         }, token);
     },
 
-    btnClose: function(event, coustEvent) {
+    btnClose: function (event, coustEvent) {
         var this_ = this;
 
-        if(this.node_anim) this.node.stopAction(this.node_anim);
+        if (this.node_anim) this.node.stopAction(this.node_anim);
 
         var usrId = cc.sys.localStorage.getItem("usrId");
         var params = {
@@ -143,19 +146,19 @@ cc.Class({
         };
         var token = cc.sys.localStorage.getItem("Token");
         var url = this.com.serverUrl + "/user/upUserDes";
-        this.httpUtils._instance.httpPost(url, JSON.stringify(params), function(data){
+        this.httpUtils._instance.httpPost(url, JSON.stringify(params), function (data) {
             console.log(data);
 
-            var jsonD = JSON.parse(data);
+            var jsonD = JSON.parse(data);
 
-            if (jsonD["errcode"] === 0){
+            if (jsonD["errcode"] === 0) {
                 console.log("个性签名上传成功")
             } else {
                 console.log(jsonD.msg)
             }
         }, token);
 
-        if (CC_WECHATGAME){
+        if (CC_WECHATGAME) {
             wx.hideKeyboard();
         }
 

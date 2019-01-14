@@ -3,11 +3,11 @@ cc.Class({
 
     properties: {
         spRanking: cc.Sprite,
-        lbRanking: cc.RichText,
+        lbRanking: cc.Label,
         avatarImgSprite: cc.Sprite,
-        nickLabel: cc.RichText,
-        desLabel: cc.RichText,
-        numLabel: cc.RichText,
+        nickLabel: cc.Label,
+        desLabel: cc.Label,
+        numLabel: cc.Label,
         sexSprite: cc.Sprite,
         btnFollow: cc.Button,
     },
@@ -33,23 +33,24 @@ cc.Class({
         var nickName = "";
         if (itemInfo.nickName && itemInfo.nickName != "null")
             nickName = itemInfo.nickName
-        this.nickLabel.string = "<b>" + nickName + "</b>";
+        // this.nickLabel.string = "<b>" + nickName + "</b>";
+        this.nickLabel.string = nickName ;
 
         var des = "";
         if (itemInfo.des && itemInfo.des != "null")
             des = itemInfo.des;
-        this.desLabel.string = "<b>" + des + "</b>";
+        this.desLabel.string = des;
 
         if (type == 0){
             var maxScore = 0;
             if (itemInfo.maxScore && itemInfo.maxScore != "null")
                 maxScore = itemInfo.maxScore;
-            this.numLabel.string = "<b>好评: " + maxScore + "</b>";
+            this.numLabel.string = "好评: " + maxScore ;
         } else if (type == 1){
             var fans = 0;
             if (itemInfo.fans && itemInfo.fans != "null")
                 fans = itemInfo.fans;
-            this.numLabel.string = "<b>金币: " + fans + "</b>";
+            this.numLabel.string = "金币: " + fans ;
         }
 
         if (itemInfo.sex){
@@ -69,7 +70,7 @@ cc.Class({
             this.spRanking.spriteFrame = new cc.SpriteFrame(this.com.res_loaded["png_paihangbang_tongpai"]);
         } else {
             this.lbRanking.node.active = true;
-            this.lbRanking.string = "<b>" + (ranking + 1).toString() + "</b>";
+            this.lbRanking.string =  (ranking + 1).toString() ;
         }
 
         var usrId = cc.sys.localStorage.getItem("usrId");
