@@ -41,8 +41,8 @@
     },
     "_scale": {
       "__type__": "cc.Vec3",
-      "x": 0.3204279510358486,
-      "y": 0.3204279510358486,
+      "x": 0.9913598502471368,
+      "y": 0.9913598502471368,
       "z": 1
     },
     "_quat": {
@@ -9207,8 +9207,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 100.1,
-      "height": 40
+      "width": 62.56,
+      "height": 25
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -9380,8 +9380,8 @@
     "_useOriginalSize": true,
     "_string": "99/99",
     "_N$string": "99/99",
-    "_fontSize": 40,
-    "_lineHeight": 40,
+    "_fontSize": 25,
+    "_lineHeight": 25,
     "_enableWrapText": true,
     "_N$file": null,
     "_isSystemFontUsed": true,
@@ -13593,7 +13593,7 @@
         "__id__": 301
       }
     ],
-    "_active": true,
+    "_active": false,
     "_level": 0,
     "_components": [
       {

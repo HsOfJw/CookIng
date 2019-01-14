@@ -98,37 +98,37 @@ cc.Class({
         if (gold_next && des_next){
             var left = this.node.getChildByName("left");
             var name_left = left.getChildByName("name");
-            name_left.getComponent(cc.RichText).string = "<color=#9C651F><b>" + item.name + "</b></color>";
+            name_left.getComponent(cc.Label).string = item.name;
             var spItem_left = left.getChildByName("spItem");
             spItem_left.getComponent(cc.Sprite).spriteFrame = new cc.SpriteFrame(this.com.res_loaded["png_" + itemId + "_s"]);
             var desc_left = left.getChildByName("desc");
-            this.showDesc(desc_left.getComponent(cc.RichText), des);
+            this.showDesc(desc_left.getComponent(cc.Label), des);
             var gold_left = left.getChildByName("gold");
             var num_left = left.getChildByName("num");
             if (duration){
-                gold_left.getComponent(cc.RichText).string = "<color=#9C651F><b>" + gold + "</b></color>";
+                gold_left.getComponent(cc.Label).string = gold ;
                 num_left.active = true;
-                num_left.getComponent(cc.RichText).string = "<color=#9C651F><b>" + duration + "</b></color>";
+                num_left.getComponent(cc.Label).string = duration;
             } else {
-                gold_left.getComponent(cc.RichText).string = "<color=#9C651F><b>" + gold + "</b></color>";
+                gold_left.getComponent(cc.Label).string = gold;
                 num_left.active = false;
             }
 
             var right = this.node.getChildByName("right");
             var name_right = right.getChildByName("name");
-            name_right.getComponent(cc.RichText).string = "<color=#9C651F><b>" + item_next.name + "</b></color>";
+            name_right.getComponent(cc.Label).string =  item_next.name ;
             var spItem_right = right.getChildByName("spItem");
             spItem_right.getComponent(cc.Sprite).spriteFrame = new cc.SpriteFrame(this.com.res_loaded["png_" + (itemId + 1).toString() + "_s"]);
             var desc_right = right.getChildByName("desc");
-            this.showDesc(desc_right.getComponent(cc.RichText), des_next);
+            this.showDesc(desc_right.getComponent(cc.Label), des_next);
             var gold_right = right.getChildByName("gold");
             var num_right = right.getChildByName("num");
             if (duration){
-                gold_right.getComponent(cc.RichText).string = "<color=#9C651F><b>" + gold_next + "</b></color>";
+                gold_right.getComponent(cc.Label).string =  gold_next ;
                 num_right.active = true;
-                num_right.getComponent(cc.RichText).string = "<color=#9C651F><b>" + duration_next + "</b></color>";
+                num_right.getComponent(cc.Label).string =  duration_next ;
             } else {
-                gold_right.getComponent(cc.RichText).string = "<color=#9C651F><b>" + gold_next + "</b></color>";
+                gold_right.getComponent(cc.Label).string =  gold_next;
                 num_right.active = false;
             }
 
@@ -153,7 +153,7 @@ cc.Class({
             if (len > 0) str_new += '\r\n';
         }
 
-        label.string = "<color=#9C651F><b>" + str_new + "</b></color>";
+        label.string = str_new ;
     },
 
     btnClose: function(event, coustEvent) {

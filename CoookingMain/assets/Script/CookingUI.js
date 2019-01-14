@@ -20,14 +20,14 @@ cc.Class({
         m_policy: cc.Prefab,
         m_loginAward: cc.Prefab,
         m_dlgGiveGold: cc.Prefab,
-        m_lbMonth: cc.RichText,
-        m_lbMonthTargetV: cc.RichText,
+        m_lbMonth: cc.Label,//
+        m_lbMonthTargetV: cc.Label,//
         m_pgMonthTarget: cc.ProgressBar,
         m_ndMonthEvt: cc.Node,
         m_lbGold: cc.Label,
         m_lbDiamond: cc.Label,
         m_lbPraise: cc.Label,
-        m_lbGift: cc.RichText,
+        m_lbGift: cc.Label,//
         m_ndRecycle: cc.Node,
         m_reciveGoldAudio: {
             default: null,
@@ -1034,8 +1034,8 @@ cc.Class({
                         this._continueTimes++;
 
                         var tips = this.node.getChildByName("tips_bg");
-                        var lbTip = tips.getChildByName("tips").getComponent(cc.RichText);
-                        lbTip.string = "<color=#ffe050><b>" + (this._continueTimes + 1).toString() + "连上菜</b></color>";
+                        var lbTip = tips.getChildByName("tips").getComponent(cc.Label);
+                        lbTip.string =  (this._continueTimes + 1).toString() + "连上菜";
                         tips.x = 0;
                         tips.opacity = 0;
                         tips.runAction(cc.sequence(
@@ -1289,8 +1289,8 @@ cc.Class({
     givePraise: function (customerId, num) {
         var spPraise = cc.instantiate(this.node.getChildByName("praise1"));
 
-        var numRt = spPraise.getChildByName("num").getComponent(cc.RichText);
-        numRt.string = "<outline color=#e08f4c width=2>好评+" + num + "</outline>";
+        var numRt = spPraise.getChildByName("num").getComponent(cc.Label);
+        numRt.string = "好评+" + num ;
 
         var lyBuyers = this.node.getChildByName("buyers");
         var lyAnimate = this.node.getChildByName("animate");
@@ -1325,8 +1325,8 @@ cc.Class({
     givePeople: function (customerId, num) {
         var spPraise = cc.instantiate(this.node.getChildByName("people1"));
 
-        var numRt = spPraise.getChildByName("num").getComponent(cc.RichText);
-        numRt.string = "<outline color=#e08f4c width=2>顾客+" + num + "</outline>";
+        var numRt = spPraise.getChildByName("num").getComponent(cc.Label);
+        numRt.string = "顾客+" + num ;
 
         var lyBuyers = this.node.getChildByName("buyers");
         var lyAnimate = this.node.getChildByName("animate");
@@ -1817,7 +1817,7 @@ cc.Class({
     BtnTask: function (event, coustEvent) {
         var taskInfo = this.com.getTask();
 
-        var taskDes = this.node.getChildByName("close").getChildByName("richtext").getComponent(cc.RichText);
+        var taskDes = this.node.getChildByName("close").getChildByName("richtext").getComponent(cc.Label);
 
         for (var i = 0; i < taskInfo.length; i++) {
             var num = taskInfo[i].num;
@@ -1965,7 +1965,7 @@ cc.Class({
                                         this_.initMonthEvt();
                                     }
                                     var tips = this_.node.getChildByName("tips_bg");
-                                    var lbTip = tips.getChildByName("tips").getComponent(cc.RichText);
+                                    var lbTip = tips.getChildByName("tips").getComponent(cc.Label);
                                     // lbTip.string = "<color=#ffe050><b>一大波顾客即将到来！</b></color>";
                                     lbTip.string = "一大波顾客即将到来！";
                                     tips.x = 0;
@@ -2027,8 +2027,8 @@ cc.Class({
                 ext += "（0/" + taskInfo[0].num + "）";
             }
 
-            var taskDes = this.node.getChildByName("close").getChildByName("richtext").getComponent(cc.RichText);
-            taskDes.string = "<b>" + ext + "</b>";
+            var taskDes = this.node.getChildByName("close").getChildByName("richtext").getComponent(cc.Label);
+            taskDes.string = ext ;
         } else {
             this.node.getChildByName("close").getChildByName("qianwang1").active = false;
             this.node.getChildByName("close").getChildByName("richtext").active = false;
@@ -2094,8 +2094,8 @@ cc.Class({
                     this._taskInfo[index] = taskInfo[index].num;
 
                     if (taskInfo[index + 1]) {
-                        var taskDes = this.node.getChildByName("close").getChildByName("richtext").getComponent(cc.RichText);
-                        taskDes.string = "<b>" + taskInfo[index + 1].name + "</b>";
+                        var taskDes = this.node.getChildByName("close").getChildByName("richtext").getComponent(cc.Label);
+                        taskDes.string = taskInfo[index + 1].name ;
                         if (taskInfo[index + 1].type == 5) {
                             this.guideNextMonth();
                         }
@@ -2103,8 +2103,8 @@ cc.Class({
                 } else {
                     var ext = taskInfo[index].name + "（" + this._taskInfo[index] + "/" + taskInfo[index].num + "）";
 
-                    var taskDes = this.node.getChildByName("close").getChildByName("richtext").getComponent(cc.RichText);
-                    taskDes.string = "<b>" + ext + "</b>";
+                    var taskDes = this.node.getChildByName("close").getChildByName("richtext").getComponent(cc.Label);
+                    taskDes.string =ext ;
                 }
             }
         }

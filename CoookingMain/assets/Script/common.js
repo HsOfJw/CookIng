@@ -113,7 +113,6 @@ function initUserDataFromServer(userId) {
                 self.saveData.allStore = 1;
             }
         } else {
-            console.log("555555555555555555555555");
             if (userId == usrId) {
                 console.log("userId == usrId");
                 var month = cc.sys.localStorage.getItem("month");
@@ -535,10 +534,10 @@ function setAchive(type, node) {
 
                     var lb1 = new cc.Node();//new cc.RichText();
                     create_node.addChild(lb1, 1, 1003);
-                    lb1.addComponent(cc.RichText);
+                    lb1.addComponent(cc.Label);
                     lb1.anchorX = 0;
-                    lb1.getComponent(cc.RichText).fontSize = 40;
-                    lb1.getComponent(cc.RichText).string = "<outline color=#e08f4c width=2>完成成就【";
+                    lb1.getComponent(cc.Label).fontSize = 40;
+                    lb1.getComponent(cc.Label).string = "完成成就【";
                     lb1.setPosition(cc.v2(-220, 0));
 
                     var sp = new cc.Node();//new cc.Sprite();
@@ -555,10 +554,10 @@ function setAchive(type, node) {
 
                     var lb = new cc.Node();//new cc.RichText();
                     create_node.addChild(lb, 1, 1002);
-                    lb.addComponent(cc.RichText);
+                    lb.addComponent(cc.Label);
                     lb.anchorX = 0;
-                    lb.getComponent(cc.RichText).fontSize = 40;
-                    lb.getComponent(cc.RichText).string = "<outline color=#e08f4c width=2>" + this.cfgAchive[j].name + "】</outline>";
+                    lb.getComponent(cc.Label).fontSize = 40;
+                    lb.getComponent(cc.Label).string =  this.cfgAchive[j].name + "】";
                     lb.setPosition(cc.v2(50, 0));
 
                     create_node.runAction(cc.sequence(

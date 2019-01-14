@@ -58,19 +58,19 @@ cc.Class({
 
         var left = this.node.getChildByName("left");
         var name_left = left.getChildByName("name");
-        name_left.getComponent(cc.RichText).string = "<color=#9C651F><b>" + item.name + "</b></color>";
+        name_left.getComponent(cc.Label).string = item.name ;
         var spItem_left = left.getChildByName("spItem");
         spItem_left.getComponent(cc.Sprite).spriteFrame = new cc.SpriteFrame(this.com.res_loaded["png_" + itemId + "_s"]);
         var desc_left = left.getChildByName("desc");
-        this.showDesc(desc_left.getComponent(cc.RichText), des);
+        this.showDesc(desc_left.getComponent(cc.Label), des);
         var gold_left = left.getChildByName("gold");
         var num_left = left.getChildByName("num");
         if (duration){
-            gold_left.getComponent(cc.RichText).string = "<color=#9C651F><b>" + gold + "</b></color>";
+            gold_left.getComponent(cc.Label).string = gold ;
             num_left.active = true;
-            num_left.getComponent(cc.RichText).string = "<color=#9C651F><b>" + duration + "</b></color>";
+            num_left.getComponent(cc.Label).string = duration;
         } else {
-            gold_left.getComponent(cc.RichText).string = "<color=#9C651F><b>" + gold + "</b></color>";
+            gold_left.getComponent(cc.Label).string =  gold ;
             num_left.active = false;
         }
 
@@ -91,7 +91,7 @@ cc.Class({
             if (len > 0) str_new += '\r\n';
         }
 
-        label.string = "<color=#9C651F><b>" + str_new + "</b></color>";
+        label.string =str_new ;
     },
 
     btnClose: function(event, coustEvent) {

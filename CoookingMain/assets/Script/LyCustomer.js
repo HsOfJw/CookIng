@@ -25,8 +25,8 @@ cc.Class({
 
         this.com.loadTexture(this.node, ["character","mumao_quanshen"], "png_" + this._humanId);
 
-        var name = this.node.getChildByName("character").getChildByName("mumao_quanshen").getChildByName("richtext").getComponent(cc.RichText);
-        name.string = "<b>" + this.com.getHumanInfo(this._humanId).name + "</b>";
+        var name = this.node.getChildByName("character").getChildByName("mumao_quanshen").getChildByName("richtext").getComponent(cc.Label);
+        name.string =this.com.getHumanInfo(this._humanId).name ;
 
         var spine = this.node.getChildByName("character").getChildByName("spine").getComponent(sp.Skeleton);
         cc.loader.loadRes(this._humanId + "_an", sp.SkeletonData, function (err, skeletonData) {

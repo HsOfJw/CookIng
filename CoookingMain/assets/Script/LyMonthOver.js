@@ -194,7 +194,7 @@ cc.Class({
                                                 richtext01.x = -159.8;
                                                 pic_gold3.x = 22.4;
                                                 richtext1.x = 45.3;
-                                                richtext1.getComponent(cc.RichText).string = "<b>" + data.gold + "</b>";
+                                                richtext1.getComponent(cc.Label).string = data.gold ;
                                                 this_.gold = 0;
                                                 for (var j=0; j<3; j++){
                                                     if (ret[j] == 1){
@@ -213,7 +213,7 @@ cc.Class({
                                                 richtext02.x = -154.1;
                                                 pic_gold31.x = 30.1;
                                                 richtext2.x = 55;
-                                                richtext2.getComponent(cc.RichText).string = "<b>" + this_.gold + "</b>";
+                                                richtext2.getComponent(cc.Label).string =this_.gold ;
                                                 btn_double.x = 133;
                                                 btnGroupRank.x = -135.4;
                                                 xinshijian_cha.runAction(cc.sequence(
